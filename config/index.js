@@ -18,7 +18,7 @@ export const API_DEFAULT_CONFIG = {
     mack: true,
     sep: '/',
     ip: '10.10.1.20',
-    url: 'https://cnodejs.org/api/v1',
+    url: IS_SERVER ? 'https://cnodejs.org/api/v1' : '/api',
   };
   
 export const AXIOS_DEFAULT_CONFIG = {
