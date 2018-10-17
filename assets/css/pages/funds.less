@@ -1,0 +1,216 @@
+.funds-page {
+	padding-bottom: 101px;
+	.fund-header{
+		height: 50px;
+		padding: 0 10px;
+		border-bottom: 1px solid @line-color;
+		font-weight: @bold;
+		.fund-total {
+			font-size: 18px;
+			color: @gray-color;
+			white-space: nowrap;
+		}
+		.fund-price {
+			font-size: 18px;
+			color: @normal-color;
+			width: 86%;
+			text-align: right;
+			line-height: 1;
+			.fund-btc {
+				display: inline-block;
+				width: 70%;
+				word-break: break-all;
+			}
+			.fund-rmb {
+				display: inline-block;
+			  // margin-left: 4%;
+				font-size: 12px;
+				color: @gray-color;
+				vertical-align: top;
+				word-break: break-all;
+				width: 26%;
+			}
+		}
+	}
+	.market-cell-footer button{
+		padding: 5px 2px;
+	}
+	.order-box {
+		display: flex;
+	    padding: 10px 0;
+    	border-bottom: 1px solid @line-color;
+		ul {
+			width: 50%;
+			.order-cell .li-item{
+				width: auto !important;
+			}
+		}
+	}
+	.fund-box {
+		.li-box {
+			align-items: flex-start;
+			.li-item:nth-child(1) {
+				width: 30%;
+				line-height: .33rem;
+			}
+			.li-item:nth-child(2) {
+				// width: 48%;
+				padding-right: 5px;
+			}
+			.li-item:nth-child(3) {
+				// margin-top: -0.15rem;
+			}
+		}
+	}
+}
+.funds-detail-page {
+	padding-bottom: 10px;
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+	.funds-header {
+		display: flex;
+		width: 80%;
+		padding: .15rem;
+		margin: .3rem auto 0;
+		box-shadow: 0px 1px 5px #c3c3c3;
+		.i-box {
+			width: 50%;
+		}
+		.i-title {
+			font-size: .12rem;
+			color: #999;
+		}
+		.i-money {
+			font-size: .14rem;
+			color: #333;
+		}
+	}
+	.deposit-box {
+		padding: .3rem .4rem 0;
+		text-align: center;
+		img {
+			width: 1.5rem;
+		}
+		input {
+			font-size: .12rem;
+			margin-top: .1rem;	
+			display: block;
+			text-align: center;
+			width: 100%;
+		}
+		
+		button {
+			margin-top: .1rem;
+			color: @main-color;
+		}
+		
+	}
+	.withdraw-box {
+		padding-left: .1rem;
+		.i-title {
+			padding-right: .1rem;
+			font-size: 12px;
+			color: @gray-color;
+			display: flex;
+			justify-content: space-between;
+		}
+		.left-title {
+			padding-top: 11px;
+		}
+		.percentage-box {
+			margin-bottom: 5px;
+		}
+		li  {
+			// border-bottom: 1px solid @line-color;
+			padding-top: .15rem;
+			&:last-child {
+				border: none;
+			}
+		}
+		.column {
+			display: block;
+			height: .35rem;
+			line-height: .35rem;	
+			padding: 0px 10px;		
+		}
+		.i-box {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			padding-right: .1rem;
+			.form-box {
+				position: relative;
+				width: 100%;
+			}
+			.amount-input {
+				padding-right: 166px;
+			}
+			.r-desc {
+				position: absolute;
+				top: 0px;
+				right: .1rem;
+				color: #1ab394;
+				font-size: 12px;
+				line-height: .35rem;
+			}
+			.i-btn {
+				// border-radius: 0;
+				margin: 0;
+				height: .35rem;
+				&:first-child {
+					margin: 0 .1px;
+				}
+			}
+			a {
+				color: #afafaf;
+				font-size: 14px;
+				text-decoration: underline;
+			}
+		}
+		.i-box1 {
+			width: 80%;
+			margin: 0 auto;
+			align-items: center;
+			padding-right: 0;
+		}
+		.i-fee {
+			margin-top: .1rem;
+			text-align: right;
+			font-size: 12px;
+			color: #999;
+			display: flex;
+			justify-content: space-between;
+			div:first-child{
+				text-align: left;
+			}
+			span {
+				color:#e56355; 
+				font-size:14px;
+			}
+		}
+		.h-button {
+			width: 80%;
+			margin: 20px auto 0;
+		}
+	}
+	dl {
+		margin-top: .2rem;
+		text-align: left;
+		font-size: .12rem;
+		line-height: 2;
+		color: #666;
+		dd {
+			position: relative;
+			padding-left: 15px;
+			line-height: 2;
+			text-indent: 0px;
+			display: block;
+			&:before {
+				position: absolute;
+				left: 0;
+			}
+		}
+	}
+}

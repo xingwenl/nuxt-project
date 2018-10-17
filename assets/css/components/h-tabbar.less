@@ -1,0 +1,33 @@
+.h-tabbar {
+	.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, 
+	.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, 
+	.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+		color: @main-color;
+		font-weight: @bold;
+	}
+	.weui-tabbar{
+		position: fixed;
+        height: 49px;
+		box-shadow: 0 -1px 1px @line-color;
+		background-color: #fff;
+		&:before {
+			border: none;
+		}
+		.weui-tabbar__item, .weui-tabbar__label{
+			color: #aaa;
+		}
+
+        .weui-tabbar__icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .weui-tabbar__icon > i {
+            font-size: 20px;
+        }
+
+	}
+	.weui-tabbar__item {
+		padding-top: 6px;
+	}
+}

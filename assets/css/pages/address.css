@@ -1,0 +1,70 @@
+.whitelist-page {
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.whitelist-page .border-b {
+  border-bottom: 1px solid #d0d0d0;
+}
+.whitelist-page .white-bg {
+  background-color: #fff;
+}
+.whitelist-page .padding-lr {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.whitelist-page .whitelist-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+}
+.whitelist-page .whitelist-header .whitelist-h-title {
+  width: 80%;
+}
+.whitelist-page .whitelist-header .whitelist-h-title .text1 {
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+}
+.whitelist-page .whitelist-header .whitelist-h-title .text2 {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 15px;
+}
+.whitelist-page .whitelist-section {
+  margin-bottom: 10px;
+}
+.whitelist-page .whitelist-section .coin-name {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.whitelist-page .whitelist-section .coin-name .coin {
+  font-weight: 700;
+  font-size: 16px;
+}
+.whitelist-page .whitelist-section .btn-function {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.whitelist-page .whitelist-section .btn-function button {
+  font-size: 15px;
+  color: #666666;
+}
+.whitelist-page .whitelist-section .btn-function button i {
+  margin-right: 3px;
+}
+.whitelist-page .whitelist-section .btn-function .btn1 {
+  margin-right: 20px;
+}
+.whitelist-page .whitelist-btn-add {
+  width: 80%;
+  font-size: 16px;
+  font-weight: lighter;
+  margin-top: 20px;
+}
+.whitelist-page .whitelist-btn-add i {
+  margin-right: 5px;
+}

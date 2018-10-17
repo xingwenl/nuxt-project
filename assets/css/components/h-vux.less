@@ -1,0 +1,204 @@
+.weui-cells .weui-cell__hd {
+	width: 25%;
+}
+.weui-btn_default.weui-btn.h-button {
+	margin: 0;
+    padding: 0;
+	height: 35px;
+	color: white;
+	font-size: 14px;
+	background-color: @main-color;
+	border-radius: 3px;
+	&:after {
+		content: none;
+	}
+	&.weui-btn_mini {
+		padding: 0 1.32em;
+		height: 30px;
+    	line-height: 30px;
+	}
+}
+.weui-btn_disabled.weui-btn_default {
+	background-color: @main-color !important;
+}
+.weui-btn.weui-btn_default {
+	overflow: visible;
+}
+
+// .weui-btn_disabled.weui-btn_default {
+
+// }
+.vux-cell-box:not(:first-child):before {
+	content: none !important;
+}
+.weui-tabbar__icon {
+	width: auto;
+	height: auto;
+}
+.weui-btn.main-btn {
+	height: 35px;
+	color: white;
+	font-size: 14px;
+	background-color: @main-color;
+}
+.weui-btn.main-btn-color {
+	color: white;
+	background-color: @main-color;
+}
+.weui-btn:after {
+	width: 199%;
+}
+
+
+.vux-x-input {
+	.weui-input {
+		padding-left: 30px;
+	}
+}
+.change-password-page {
+	.weui-label {
+		text-align: right;
+		font-size: 12px;
+		color: #999;
+	}
+}
+.main-pages {
+	.vux-slider > .vux-swiper > .vux-swiper-item > a > .vux-swiper-desc {
+		height: auto;
+		bottom: 95px;
+		background: none;
+		&.desc {
+			font-size: 12px;
+			bottom: 20px;
+			top: 63px;
+			padding-right: 20px;
+    		white-space: normal;
+		}
+	}
+	.weui-switch:checked, .weui-switch-cp__input:checked ~ .weui-switch-cp__box {
+		border-color: @main-color;
+		background-color: @main-color;
+	}
+	.vux-spinner {
+		stroke: @main-color;
+		fill: @main-color;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -20px;
+		margin-top: -20px;
+	}
+}
+
+
+.swiper-vertical {
+	height: .32rem;
+	line-height: .32rem;
+	border-bottom: 1px solid @line-color;
+	.vux-swiper-item {
+		padding: 5px 10px;
+	}
+	p {
+		color: @main-color;
+		font-size: .14rem;
+		text-align: center;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		line-height: .23rem;
+	}
+}
+
+
+.my-swiper {
+	height: 1.8rem;
+	.swiper-img {
+		position: relative;
+		display: block;
+		height: 100%;
+		width: 100%;
+		object-position: center;
+		object-fit: cover;
+	}
+	.swiper-title {
+		position: absolute;
+		top: .5rem;
+		padding:0 .12rem;
+		color: #fff;
+		text-shadow: 0 1px 0 rgba(0,0,0,.5);
+		font-size: .16rem;
+		height: auto;
+		background: none;
+	}
+	.swiper-desc {
+		position: absolute;
+		font-size: .12rem;
+		top: .83rem;
+		white-space: normal;
+		padding: 0 .13rem;
+		color: #fff;
+		text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	}
+	.swiper-pagination-bullets {
+		bottom: 4px;
+	}
+	.swiper-pagination-bullet{
+		background: #d0cdd1;
+		width: 6px;
+		height: 6px;
+	}
+	.swiper-pagination-bullet-active {
+		background: #04be02;
+	}
+}
+
+// 阿里验证码样式
+
+/* 滑动条高度、边框、背景色等 */
+.main-pages {
+	._nc .stage3 {
+		height: 105px;
+	}
+	._nc .stage2 .textbox {
+		height: .35rem;
+	}
+	._nc .stage {
+		padding: 0;
+	}
+	._nc .stage1 {
+		height: .35rem;
+		.slider {
+			height: .35rem !important;
+			box-shadow: 0 0 3px #999;
+			background-color: #ddd;
+			left: 0;
+			right: 0;
+		}
+		.track div {
+			color: #fff;
+		}
+		.track div,.label {
+			line-height: .35rem !important;
+			height: .35rem !important;
+			font-size: .14rem;
+		}
+		.button {
+			width: .35rem !important;
+			height: .35rem !important;
+		}
+		.icon {
+			left: 5px !important;
+			top: 3px !important;
+			font-size: 0.25rem !important;
+			bottom: 0 !important;
+		}
+		/* 滑动条背景色-正常 */
+		.bg-green {
+			background-color: @main-color;
+		}
+		/* 滑动条背景色-失败 */
+		.bg-red {
+			background-color: #ff5500;
+		}
+	}
+}

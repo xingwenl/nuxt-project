@@ -1,0 +1,167 @@
+.li-box {
+	padding: .1rem .1rem;
+	border-bottom: 1px solid @line-color;
+	position: relative;
+    overflow: hidden;
+	.li-item {
+		width: 30%;
+		line-height: 24px;
+		font-size: .12rem;
+		color: @normal-color;
+		label {
+			display: inline-block;
+			word-break: break-all;
+		}
+		.i-head {
+		    font-size: .14rem;
+		    font-weight: @bold;
+		}
+		.i-name {
+		    font-size: .18rem;
+		    font-weight: @bold;
+		}
+		.i-market {
+			font-size: .12rem;
+		}
+		.i-vol {
+			font-size: .12rem;
+		    white-space: nowrap;
+		}
+		.i-price {
+			font-size: .18rem;
+		    font-weight: @bold;
+		}
+		.i-total, .i-use{
+			font-size: .16rem;
+		    font-weight: @bold;
+		}
+		.i-rprice-total {
+			font-size: .12rem;
+		    color: @gray-color;
+		}
+		.i-rprice {
+			font-size: .12rem;
+		}
+		.i-change {
+			font-size: .18rem;
+			font-weight: @bold;
+		}
+		.change-up {
+		    color: @change-up !important;
+		}
+		.change-down {
+		    color: @change-down !important;
+		}
+		.fa-star {
+			color: #999;
+			&.active {
+				color: #333;
+			}
+		}
+		.high-star {
+			color: #1ab394;
+			vertical-align: top;
+			margin-top: 10px;
+		}
+		a {
+			color: #17a787;
+		}
+	}
+	.li-item:nth-child(2) {
+		width: 40%;
+		text-align: right;
+	}
+	.li-item:nth-child(3) {
+		text-align: right;
+	}
+	&.history-cell {
+		padding: .04rem .1rem; 
+		.li-item {
+			width: 40%;
+			&:nth-child(2) {
+				width: 30%;
+			}
+		}
+	}
+	&.order-cell {
+		border-bottom: none;
+		line-height: 1;
+		padding-top: 2px;
+		padding-bottom: 2px;
+		.li-item {
+			width: 60%;
+			z-index: 1;
+		}
+		.li-item:nth-child(2) {
+			width: 50%;
+		}
+		.cancel-btn {
+			padding: .05rem .1rem;
+			line-height: 1;
+		}
+		.li-item:active {
+			opacity: 0.3;
+		}
+	}
+	&.fund-cell {
+		.li-item:nth-child(1) {
+			width: 20%;
+		}
+		.li-item:nth-child(2) {
+			width: 50%;
+			white-space: nowrap;
+		}
+		.li-item:nth-child(3) {
+			width: 25%;
+			white-space: nowrap;
+			text-align: right;
+		}
+	}
+	&.funds-detail-cell {
+		.li-item {
+			width: auto;
+		}
+	}
+	.progress {
+		position: absolute;
+	    right: 0;
+	    height: 100%;
+	    // z-index: -1;
+	}
+	.progress-down {
+	    background-color: #f8e4e4;
+	}
+	.progress-up {
+	    background-color: #ecf7e4;
+	}
+}
+.market-cell {
+	.cell-header {
+		padding: 6px 10px;
+    	color: #999;
+		font-size: 12px;
+		border-bottom: 1px solid @line-color;
+		font-weight: @bold;
+		background: white;
+		width: 100%;
+		label {
+			width: 30%;
+		}
+		label:nth-child(2) {
+			width: 40%;
+			text-align: right;
+		}
+		label:nth-child(3) {
+			text-align: right;
+		}
+		// .cell-header-item {
+	 //    	position: relative;
+	 //    	width: auto;
+	 //    	padding-right: 10px;
+	 //    	&:before {
+	 //    		position: absolute;
+	 //    		right: 0;
+	 //    	}
+	 //    }
+	}
+}

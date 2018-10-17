@@ -1,0 +1,34 @@
+{
+  "name": "nuxt-test",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "xingwen",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@types/vue": "^2.0.0",
+    "axios": "^0.18.0",
+    "element-ui": "^2.4.8",
+    "mockjs": "^1.0.1-beta3",
+    "nuxt": "^1.0.0",
+    "vue-meta": "^1.5.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/proxy": "^1.2.4",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "less": "^3.7.1",
+    "less-loader": "^4.1.0"
+  }
+}

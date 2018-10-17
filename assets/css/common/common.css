@@ -1,0 +1,210 @@
+/*
+ * @Author: xingwen 
+ * @Date: 2018-04-04 13:32:01 
+ * @Last Modified by: xingwen
+ * @Last Modified time: 2018-04-04 13:34:10
+ */
+/*
+    ::-webkit-scrollbar    //滚动条整体部分
+    ::-webkit-scrollbar-button   //滚动条两端的按钮
+    ::-webkit-scrollbar-track   // 外层轨道
+    ::-webkit-scrollbar-track-piece    //内层轨道，滚动条中间部分（除去）
+    ::-webkit-scrollbar-thumb //滚动条里面可以拖动的那个
+    ::-webkit-scrollbar-corner   //边角
+    ::-webkit-resizer   ///定义右下角拖动块的样式
+    :horizontal//适用于任何水平方向上的滚动条
+    :vertical//适用于任何垂直方向的滚动条
+    :decrement//适用于按钮和轨道碎片。表示递减的按钮或轨道碎片，例如可以使区域向上或者向右移动的区域和按钮
+    :increment//适用于按钮和轨道碎片。表示递增的按钮或轨道碎片，例如可以使区域向下或者向左移动的区域和按钮
+    :start//适用于按钮和轨道碎片。表示对象（按钮轨道碎片）是否放在滑块的前面
+    :end //适用于按钮和轨道碎片。表示对象（按钮轨道碎片）是否放在滑块的后面
+    :double-button//适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。
+    :single-button//适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。
+    :no-button//表示轨道结束的位置没有按钮。
+    :corner-present//表示滚动条的角落是否存在。
+    :window-inactive//适用于所有滚动条，表示包含滚动条的区域，焦点不在该窗口的时候。
+ */
+/*定义滚动条高宽及背景
+ 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+  background-color: #F5F5F5;
+}
+/*定义滚动条轨道
+ 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+/*定义滑块
+ 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  /*系统默认菜单被禁用*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  -moz-user-select: none;
+  /*火狐*/
+  -ms-user-select: none;
+  /*IE10*/
+  user-select: none;
+}
+input,
+textarea {
+  -webkit-user-select: auto;
+  /*webkit浏览器*/
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #c3c3c3;
+  font-size: .12rem;
+}
+:-moz-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #c3c3c3;
+  font-size: .12rem;
+}
+::-moz-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #c3c3c3;
+  font-size: .12rem;
+}
+:-ms-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #c3c3c3;
+  font-size: .12rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  cursor: pointer;
+}
+ul,
+dl,
+ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+li,
+dd,
+dt {
+  list-style: none;
+  margin-left: 0;
+}
+html {
+  font-size: 625%;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-size: 16px;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+button,
+input {
+  outline: none;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  /*清除ios默认圆角*/
+}
+button:focus,
+input:focus {
+  outline: none;
+}
+button[disabled],
+input[disabled] {
+  opacity: 0.6;
+}
+.content {
+  padding-top: 46px;
+  padding-bottom: 53px;
+}
+.bold {
+  font-weight: 600;
+}
+.flex-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.talc {
+  text-align-last: center;
+}
+.wh-full {
+  height: 100%;
+  width: 100%;
+}
+.mt-15 {
+  margin-top: .15rem !important;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.ml-10 {
+  margin-left: .1rem !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.pr-0 {
+  padding-right: 0 !important;
+}
+.pl-60 {
+  padding-right: .6rem !important;
+}
+.right-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 10px;
+}
+.nowrap {
+  white-space: nowrap;
+}

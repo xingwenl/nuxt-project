@@ -1,0 +1,251 @@
+/*
+ * @Author: xingwen 
+ * @Date: 2018-03-28 14:48:13 
+ * @Last Modified by: xingwen
+ * @Last Modified time: 2018-04-26 16:19:33
+ */
+
+.tande-page {
+	// padding-bottom: 0;
+	.trande-header {
+		border: none;
+	}
+	.trand-up-box {
+		position: relative;
+		width: 100%;
+		height: 3rem;
+		overflow-y: scroll;
+		
+	}
+	.k-line-box {
+		.vux-spinner {
+			position: absolute;
+			display: block;
+			top: 50%;
+			left: 50%;
+			margin: -14px;
+		}
+		.k-box {
+			height: 2.7rem;
+			width: 100%;
+		}
+	}
+	.kline-head {
+		position: relative;
+		width: 100%;
+		// display: flex;
+		// justify-content: space-around;
+		height: .3rem;
+		white-space: nowrap;
+		padding: 0 0.1rem;
+		font-size: .12rem;
+		button {
+			display: inline-block;
+			// margin-right: .15rem; 
+			width: 12.5%;
+			height: 100%;
+			&.kline-active {
+				border-bottom: @main-color 2px solid;
+			}
+		}
+		.extend-box {
+			position: absolute;
+			left: 0;
+			padding: .05rem .1rem;
+			width: 100%;
+			z-index: 1;
+			background-color: #eee;
+			font-size: .13rem;
+			margin-top: -.02rem; 
+			box-shadow: 0 3px 5px #e2e2e2;
+		}
+		.extend {
+			background-color: #eee;
+			font-size: .13rem;
+		}
+	}
+	.trande-up-foot {
+		position: relative;
+	  padding: 0;
+		bottom: 0;
+	}
+	// 3-28  2:48 add
+	.trande-foot {
+		position: relative;
+		padding: 0;
+		bottom: 0;
+		border: none;
+		border-bottom: 1px solid @line-color;
+		button {
+			margin-top: 0;
+			margin-bottom: -3px;
+			border-radius: 4px 4px 0 0;
+			&.active {
+				border-top: 1px solid @line-color;
+				border-bottom: 1px solid #FFF;
+			}
+		}
+	}
+	.trande-down-foot {
+		padding: 0;
+		padding-bottom: 2px;
+	}
+
+	
+	.trand-down-box {
+	    position: absolute;
+	    top: 404px;
+	    bottom: 90px;
+		width: 100%;
+		padding: 0 4px;
+		overflow-y: scroll;
+		.trand-down-item-box {
+			li {
+				margin-top: 5px;
+			}
+			.i-title{
+				width: 58%;
+				display: flex;
+				justify-content: space-between;
+				font-size: 12px;
+				color: @gray-color;
+				&.w-100 {
+					justify-content: flex-start;
+					.t-1 {
+						width: 20%;
+					}
+					.t-2 {
+						width: 39%;
+						text-align: right;
+					}
+					.t-3 {
+						width: 41%;
+						text-align: right;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					p span{
+						color: @normal-color;
+					}
+				}
+			}
+			.i-box {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				.right-box {
+				    display: flex;
+				    justify-content: space-around;
+				    text-align: center;
+				    width: 40%;
+				    padding-left: 5px;
+					i {
+						display: block;
+						width: 45%;
+					    border: 1px solid #eee;
+					    font-size: 20px;
+					    font-weight: bold;
+					    line-height: 28px;
+					}
+					button {
+						margin: 0;
+					    padding: 0;
+						width: 100%;
+						height: 30px;
+						color: white;
+						font-size: 14px;
+    					line-height: 1;
+						border-radius: 3px;
+						&:after {
+							content: none;
+						}
+						&.buy {
+							background-color: @change-up;
+						}
+						&.sell {
+							background-color: @change-down;
+						}
+					}
+				}
+			}
+			.form-box {
+				position: relative;
+				width: 59%;
+				input {
+					font-size: 16px;
+					color: @normal-color;
+					padding-right: 40px;
+					height: 30px;
+				}
+				label {
+					position: absolute;
+					top: 0;
+					right: 10px;
+					height: 30px;
+					line-height: 30px;
+					color: @gray-color;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+	.trand-down-box {
+		position: relative;
+		top: 0;
+		bottom: 0;
+		min-height: 1.5rem;
+	}
+
+	.history-box {
+		
+	}
+	.order-box {
+		display: flex;
+		ul {
+			width: 50%;
+		}
+	}
+	.buy-box {
+		.flow-box .flow-state.active {
+			background-color: @change-up;
+		}
+		.flow-box .flow-line.active {
+			background-color: @change-up;
+		}
+	}
+	.open-order-box {
+		display: flex;
+	    padding: 10px 0;
+    	border-bottom: 1px solid @line-color;
+		ul {
+			width: 50%;
+			.order-cell .li-item{
+				width: auto !important;
+			}
+		}
+	}
+}
+
+.flow-box {
+	display: flex;
+    align-items: center;
+    width: 97%;
+	.flow-state {
+		width: 14px;
+	    height: 14px;
+	    border-radius: 50%;
+		background-color: #e2e2e2;
+		&.active{
+			background-color: @change-down;
+		}
+	}
+
+	.flow-line {
+		background-color: #e2e2e2;
+		height: 4px;
+    	width: 13%;
+    	&.active{
+			background-color: @change-down;
+		}
+	}
+}
