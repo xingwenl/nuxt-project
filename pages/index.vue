@@ -18,9 +18,6 @@ export default {
       topicData: [],
     }
   },
-  created() {
-    
-  },
   async asyncData ({isDev, isServer}) {
     let res = await api.topics({
       page: 1,
