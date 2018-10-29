@@ -5,7 +5,8 @@
   "author": "xingwen",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development backpack dev",
+    "dev_old": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -15,15 +16,22 @@
   "dependencies": {
     "@types/vue": "^2.0.0",
     "axios": "^0.18.0",
+    "crypto": "^1.0.1",
     "element-ui": "^2.4.8",
+    "express": "^4.16.4",
+    "express-winston": "^3.0.1",
     "mockjs": "^1.0.1-beta3",
+    "mysql": "^2.16.0",
     "nuxt": "^1.0.0",
-    "vue-meta": "^1.5.5"
+    "vue-meta": "^1.5.5",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
     "babel-eslint": "^8.2.1",
+    "backpack-core": "^0.7.0",
+    "cross-env": "^5.2.0",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",

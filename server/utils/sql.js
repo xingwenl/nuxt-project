@@ -1,23 +1,18 @@
-var mysql      = require('mysql');
-'use strict';
-
-var pool = mysql.createPool({
-	host:'localhost',
-	user:'root',
-	password:'123456',
-	database:'xingwentest',
-	port:'3306'
-})
-class sql{
-
-	constructor(tableName) {
+import mysql from 'mysql'
+import { sql } from "../config/index";
+const pool = mysql.createPool(sql);
+import utils from "../utils/index";
+export default class Sql{
+	constructor (tableName) {
 		this.tableName = tableName;
-
 	}
-
-	query (sql,options){
+	T(tableName){
+		this.tableName = tableName;
+		return this;
+	}
+	query (sqlStr,options){
 		return new Promise((res,rej) => {
-			pool.query(sql,(err,results) => {
+			pool.query(sqlStr,(err,results) => {
 				if (err) {
 					rej(err);
 					console.log('错误');
@@ -30,8 +25,9 @@ class sql{
 
 
 
-	search (object){
+	search (select,object,other){
 		var str = ''
+			other = other||''
 		if (object) {
 			str = 'WHERE';
 			for (var variable in object) {
@@ -40,9 +36,9 @@ class sql{
 				}
 			}
 			str = str.slice(0,-4);
-			return this.query(`SELECT * FROM ${this.tableName} ${str}`);
+			return this.query(`SELECT ${select} FROM ${this.tableName} ${str} ${other}`);
 		}else{
-			return this.query(`SELECT * FROM ${this.tableName}`);
+			return this.query(`SELECT * FROM ${this.tableName} ${other}`);
 		}
 	}
 	insert (object) {
@@ -50,33 +46,32 @@ class sql{
 			value = [];
 		if (object) {
 			var item = '';
-			if (Array.isArray(object)) {
-				object.forEach(function(item, index){
-					var vauleTmp = [];
-					for (var variable in item) {
-						if (index == 0) {
-							key.push(variable);
-						}
-						vauleTmp.push(`"${item[variable]}"`);
-					}
-					vauleTmp = `(${vauleTmp.toString()})`;
-					value.push(vauleTmp);
-				})
+			if (!Array.isArray(object)) {
+				object = [object];
 			}
+			if (utils.isEmptyObject(object)) {
+				console.log('这尼玛是个空值') 
+				return object;
+			}
+			object.forEach(function(item, index){
+				var vauleTmp = [];
+				for (var variable in item) {
+					if (index == 0) {
+						key.push(variable);
+					}
+					vauleTmp.push(`"${item[variable]}"`);
+				}
+				vauleTmp = `(${vauleTmp.toString()})`;
+				value.push(vauleTmp);
+			})
 			key = key.toString();
 			value = value.toString();
 			var str = `INSERT INTO ${this.tableName}(${key}) VALUES${value}`;
-			
-			
 			return this.query(str);
 		}
+		console.log('这尼玛是个空值')
 	}
 }
-module.exports = {
-	mui: function(){
-		return new sql('mui');
-	}
-} 
 // `
 // 	create procedure procedureName()
 // 	BEGIN
