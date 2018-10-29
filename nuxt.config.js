@@ -44,13 +44,13 @@ module.exports = {
       '@nuxtjs/proxy'
   ],
   proxy: [
-      [
-        '/api', 
-        { 
-          target: 'https://cnodejs.org/api/v1', // api主机
-          pathRewrite: { '^/api' : '/' }
-        }
-      ]
+      // [
+      //   '/api', 
+      //   { 
+      //     target: 'https://cnodejs.org/api/v1', // api主机
+      //     pathRewrite: { '^/api' : '/' }
+      //   }
+      // ]
   ],
   css: [
     {src: './assets/css/index.less', lang: 'less'}

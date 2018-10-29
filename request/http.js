@@ -18,6 +18,7 @@ export default async function http (params) {
     const post = method.toUpperCase() === 'POST' && ctx.data
     const get = method.toUpperCase() === 'GET' && ctx.data
     const url = ctx.url
+    console.log(url)
     const res = await axiosInstance({
         url: url,
         method: method,

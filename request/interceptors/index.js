@@ -10,10 +10,10 @@ export function requestFailFunc (requestError) {
 
 export function responseSuccessFunc (responseObj){
   let resData = responseObj.data;
-  if (resData.success) {
+  if (resData.code === 200) {
     return Promise.resolve(resData);
   }
-  return Promise.reject(responseError);
+  return Promise.resolve(resData);
 }
 export function responseFailFunc (responseError){
   // 响应失败

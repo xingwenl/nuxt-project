@@ -1,8 +1,9 @@
 <template>
   <section class="container">
-    <topic-list
+    <!-- <topic-list
       :list="topicData"
-      />
+      /> -->
+      {{topicData}}
   </section>
 </template>
 
@@ -23,8 +24,11 @@ export default {
       page: 1,
     })
     return {
-      topicData: res.data
+      topicData: res
     }
+  },
+  async created () {
+    
   },
   methods: {
   }

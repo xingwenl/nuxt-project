@@ -1,15 +1,23 @@
 import base from '../base/index'
 import utils from '../../utils/index'
 const router = base.Router()
-const sql = base.sql
+const sql = base.sql.T('account')
 
 router.get('/all_user', async (req, res) => {
-    const results = await sql.T('user').search()
-    return res.json(base.returnJson(
-        200,
-        results,
-        'success'
-    ))
+    try {
+        const results = await sql.search()
+        return res.json(base.returnJson(
+            200,
+            results,
+            'success'
+        ))
+    } catch (error) {
+        return res.json(base.returnJson(
+            10005,
+            error,
+            '服务器错误'
+        ))
+    }
 })
 // 查询个人信息
 router.post('/userinfo', async (req, res) => {
@@ -20,7 +28,7 @@ router.post('/userinfo', async (req, res) => {
             return res.json(base.returnJson(10001,'token不存在',"未登录"));
         }
 
-        const results = await sql.T('user_info').search('username,real_name,email,sex', {
+        const results = await sql.search('username,real_name,email,sex', {
             token:token
         });
 
@@ -36,25 +44,24 @@ router.post('/userinfo', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try{
-        const username = req.body.username,
-              real_password = req.body.password;
-
-        if (utils.isEmpty(username) || utils.isEmpty(real_password)) {
+        const { account, password, sex, email, age } = req.body
+        if (utils.isEmpty(account) || utils.isEmpty(password)) {
             return res.json(base.returnJson(10001,'error',"请填写完整信息"));
         }
 
-
-        const isExist = await sql.T('user_info').search('*', {'username':username})
+        const isExist = await sql.search('*', {'account': account})
         if (!utils.isEmptyObject(isExist)) {
             return res.json(base.returnJson(10002,'error',"改账号已存在，请重新输入账号"));
         }
         
-        const password = utils.sha1(req.body.password)
+        const password_sha1 = utils.sha1(password)
 
-        const results = sql.T('user_info').insert({
-            username: username,
-            password: password,
-            real_password: real_password
+        const results = sql.insert({
+            account,
+            password: password_sha1,
+            sex: sex === '男' ? 1 : 0,
+            email,
+            age,
         })
 
         res.json(base.returnJson(200, 'success', "注册成功"));
@@ -74,7 +81,7 @@ router.post('/login', async (req, res) => {
 
         // 获取加密密码
         const password = utils.sha1(req.body.password)
-        const isExist = await sql.T('user_info').search('*', {
+        const isExist = await sql.search('*', {
             username: username,
             password: password
         })
@@ -89,7 +96,7 @@ router.post('/login', async (req, res) => {
             return res.json(base.returnJson(200, update, "更新失败"));
         }
 
-        const results = await sql.T('user_info').search('username,token', {
+        const results = await sql.search('username,token', {
             username:username
         });
 

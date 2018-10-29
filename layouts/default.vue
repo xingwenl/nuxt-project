@@ -1,6 +1,6 @@
 <template>
   <div>
-    <w-header></w-header>
+    <!-- <w-header></w-header> -->
     <nuxt/>
   </div>
 </template>

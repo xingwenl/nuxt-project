@@ -6,7 +6,7 @@ import http from '../http'
 export default  {
     topics (data) {
         return http({
-            url: '/topics',
+            url: '/account/all_user',
             method: 'GET',
             data: {
                 limit: 10,

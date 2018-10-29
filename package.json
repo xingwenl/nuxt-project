@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=development backpack dev",
     "dev_old": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=production pm2 start build/main.js",
+    "start_old": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"

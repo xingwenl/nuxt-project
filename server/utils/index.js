@@ -1,9 +1,9 @@
 'use strict';
-const crypto = require('./crypto.js');
-class utils{
+import Crypto from './crypto'
+class Utils{
 
 	constructor() {
-		this.extendClass(this,crypto);
+		this.extendClass(this, Crypto);
 	}
 
 	// 合并class
@@ -54,4 +54,4 @@ class utils{
 	}
 }
 
-module.exports = new utils();
+export default new Utils()

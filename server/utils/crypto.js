@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-module.exports = class {
+export default class Crypto {
 
 	sha1 (str) {
 		const sha1 = crypto.createHash('sha1');

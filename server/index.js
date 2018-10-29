@@ -18,13 +18,16 @@ var path = require('path');
 var pkg = require('../package');
 // let config = getConfig(process.env.NODE_ENV);
 var fs = require('fs');
-import axios from 'axios';
+// import axios from 'axios';
 import bodyParser from 'body-parser'
 // import cookieParser from 'cookie-parser'
 
 
 const app = express();
-
+const router = express.Router()
+router.get('/api', function (req, res) {
+    res.json("che你哥哥")
+})
 app.use(bodyParser.json());
 // app.use(cookieParser());
 
@@ -35,8 +38,8 @@ const host = 'localhost';
 const port = '3000';
 
 // console.log("===========dirname",__dirname);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.set('trust proxy', 1);
 // session 中间件
@@ -54,7 +57,6 @@ app.set('trust proxy', 1);
 //     resave: true,
 //     saveUninitialized: true
 // }));
-app.use('/api',api);
 app.locals.blog = {
     title: pkg.name,
     description: pkg.description
@@ -81,6 +83,7 @@ app.use(expressWinston.logger({
 }));
 
 // startRouter(app);
+app.use('/api', api);
 
 app.use(expressWinston.errorLogger({
     transports: [

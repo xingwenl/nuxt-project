@@ -1,5 +1,5 @@
 import base from './base'
-import user from './user'
+import user from './account'
 const router = base.Router()
-router.use('/user', user)
+router.use('/account', user)
 export default router

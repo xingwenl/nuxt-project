@@ -5,9 +5,9 @@ class Base {
     constructor () {
         this.sql = new Sql()
     }
-    returnJson (retcode, data, msg) {
+    returnJson (code, data, msg) {
         return {
-            retcode,
+            code,
             data,
             msg
         }
