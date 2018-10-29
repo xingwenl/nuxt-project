@@ -1,6 +1,5 @@
 # dependencies
 node_modules
-server/config
 # logs
 npm-debug.log
 
@@ -9,3 +8,4 @@ npm-debug.log
 
 # Nuxt generate
 dist
+server/config/index.js
