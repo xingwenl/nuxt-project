@@ -1,0 +1,11 @@
+```mysql
+CREATE TABLE topic(
+	id int auto_increment not null PRIMARY KEY,
+	title CHAR(255) NOT NULL,
+	content VARCHAR(10000) NOT NULL,
+	author CHAR(64) NOT NULL,
+	intro CHAR(255),
+	create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	modify_time TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+);
+```
