@@ -2534,6 +2534,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_body_parser__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_body_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_body_parser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_cookie_parser__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_cookie_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_cookie_parser__);
 
 
 // var session = require('express-session');
@@ -2553,7 +2555,6 @@ var pkg = __webpack_require__(40);
 var fs = __webpack_require__(16);
 // import axios from 'axios';
 
-// import cookieParser from 'cookie-parser'
 
 
 const app = __WEBPACK_IMPORTED_MODULE_1_express___default()();
@@ -2562,7 +2563,7 @@ router.get('/api', function (req, res) {
     res.json("che你哥哥");
 });
 app.use(__WEBPACK_IMPORTED_MODULE_3_body_parser___default.a.json());
-// app.use(cookieParser());
+app.use(__WEBPACK_IMPORTED_MODULE_4_cookie_parser___default()());
 
 // process.env.DEBUG = 'nuxt:*'
 
@@ -2945,16 +2946,15 @@ router.get('/all_user', async (req, res) => {
     }
 });
 // 查询个人信息
-router.post('/userinfo', async (req, res) => {
+router.get('/userinfo', async (req, res) => {
     try {
-        const token = req.body.token;
-
+        const token = req.cookies.token;
         if (__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmpty(token)) {
             return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(10001, 'token不存在', "未登录"));
         }
 
-        const results = await sql.search('username,real_name,email,sex', {
-            token: token
+        const results = await sql.search('account,name,email,sex', {
+            token
         });
 
         if (__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmptyObject(results)) {
@@ -3019,11 +3019,13 @@ router.post('/login', async (req, res) => {
             return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(200, update, "更新失败"));
         }
 
-        const results = await sql.search('account,token', {
-            account
+        // const results = await sql.search('account,token', {
+        //     account
+        // });
+        res.cookie('token', token, {
+            maxAge: 1000 * 60 * 60 * 24
         });
-
-        return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(200, results[0], "登录成功"));
+        return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(200, null, "登录成功"));
     } catch (e) {
         console.log(e);
         return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(10004, e, "服务器错误"));
@@ -3092,7 +3094,7 @@ module.exports = {
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"nuxt-test","version":"1.0.0","description":"Nuxt.js project","author":"xingwen","private":true,"scripts":{"dev":"cross-env NODE_ENV=development backpack dev","dev_old":"nuxt","build":"nuxt build","start":"cross-env NODE_ENV=production pm2 start build/main.js","start_old":"nuxt start","generate":"nuxt generate","lint":"eslint --ext .js,.vue --ignore-path .gitignore .","precommit":"npm run lint"},"dependencies":{"@types/vue":"^2.0.0","axios":"^0.18.0","crypto":"^1.0.1","element-ui":"^2.4.8","express":"^4.16.4","express-winston":"^3.0.1","mockjs":"^1.0.1-beta3","mysql":"^2.16.0","nuxt":"^1.0.0","vue-meta":"^1.5.5","winston":"^3.1.0"},"devDependencies":{"@nuxtjs/axios":"^5.3.1","@nuxtjs/proxy":"^1.2.4","babel-eslint":"^8.2.1","backpack-core":"^0.7.0","cross-env":"^5.2.0","eslint":"^4.15.0","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-vue":"^4.0.0","less":"^3.7.1","less-loader":"^4.1.0"}}
+module.exports = {"name":"nuxt-test","version":"1.0.0","description":"Nuxt.js project","author":"xingwen","private":true,"scripts":{"dev":"cross-env NODE_ENV=development backpack dev","dev_old":"nuxt","build":"nuxt build","start":"cross-env NODE_ENV=production pm2 start build/main.js","start_old":"nuxt start","generate":"nuxt generate","lint":"eslint --ext .js,.vue --ignore-path .gitignore .","precommit":"npm run lint"},"dependencies":{"@types/vue":"^2.0.0","axios":"^0.18.0","cookie-parser":"^1.4.3","crypto":"^1.0.1","element-ui":"^2.4.8","express":"^4.16.4","express-winston":"^3.0.1","mockjs":"^1.0.1-beta3","mysql":"^2.16.0","nuxt":"^1.0.0","vue-meta":"^1.5.5","winston":"^3.1.0"},"devDependencies":{"@nuxtjs/axios":"^5.3.1","@nuxtjs/proxy":"^1.2.4","babel-eslint":"^8.2.1","backpack-core":"^0.7.0","cross-env":"^5.2.0","eslint":"^4.15.0","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-vue":"^4.0.0","less":"^3.7.1","less-loader":"^4.1.0"}}
 
 /***/ }),
 /* 41 */
@@ -12092,6 +12094,453 @@ module.exports = function (str, opts) {
 /***/ (function(module, exports) {
 
 module.exports = require("querystring");
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * cookie-parser
+ * Copyright(c) 2014 TJ Holowaychuk
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+
+
+/**
+ * Module dependencies.
+ * @private
+ */
+
+var cookie = __webpack_require__(109);
+var signature = __webpack_require__(110);
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = cookieParser;
+module.exports.JSONCookie = JSONCookie;
+module.exports.JSONCookies = JSONCookies;
+module.exports.signedCookie = signedCookie;
+module.exports.signedCookies = signedCookies;
+
+/**
+ * Parse Cookie header and populate `req.cookies`
+ * with an object keyed by the cookie names.
+ *
+ * @param {string|array} [secret] A string (or array of strings) representing cookie signing secret(s).
+ * @param {Object} [options]
+ * @return {Function}
+ * @public
+ */
+
+function cookieParser(secret, options) {
+  return function cookieParser(req, res, next) {
+    if (req.cookies) {
+      return next();
+    }
+
+    var cookies = req.headers.cookie;
+    var secrets = !secret || Array.isArray(secret)
+      ? (secret || [])
+      : [secret];
+
+    req.secret = secrets[0];
+    req.cookies = Object.create(null);
+    req.signedCookies = Object.create(null);
+
+    // no cookies
+    if (!cookies) {
+      return next();
+    }
+
+    req.cookies = cookie.parse(cookies, options);
+
+    // parse signed cookies
+    if (secrets.length !== 0) {
+      req.signedCookies = signedCookies(req.cookies, secrets);
+      req.signedCookies = JSONCookies(req.signedCookies);
+    }
+
+    // parse JSON cookies
+    req.cookies = JSONCookies(req.cookies);
+
+    next();
+  };
+}
+
+/**
+ * Parse JSON cookie string.
+ *
+ * @param {String} str
+ * @return {Object} Parsed object or undefined if not json cookie
+ * @public
+ */
+
+function JSONCookie(str) {
+  if (typeof str !== 'string' || str.substr(0, 2) !== 'j:') {
+    return undefined;
+  }
+
+  try {
+    return JSON.parse(str.slice(2));
+  } catch (err) {
+    return undefined;
+  }
+}
+
+/**
+ * Parse JSON cookies.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @public
+ */
+
+function JSONCookies(obj) {
+  var cookies = Object.keys(obj);
+  var key;
+  var val;
+
+  for (var i = 0; i < cookies.length; i++) {
+    key = cookies[i];
+    val = JSONCookie(obj[key]);
+
+    if (val) {
+      obj[key] = val;
+    }
+  }
+
+  return obj;
+}
+
+/**
+ * Parse a signed cookie string, return the decoded value.
+ *
+ * @param {String} str signed cookie string
+ * @param {string|array} secret
+ * @return {String} decoded value
+ * @public
+ */
+
+function signedCookie(str, secret) {
+  if (typeof str !== 'string') {
+    return undefined;
+  }
+
+  if (str.substr(0, 2) !== 's:') {
+    return str;
+  }
+
+  var secrets = !secret || Array.isArray(secret)
+    ? (secret || [])
+    : [secret];
+
+  for (var i = 0; i < secrets.length; i++) {
+    var val = signature.unsign(str.slice(2), secrets[i]);
+
+    if (val !== false) {
+      return val;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Parse signed cookies, returning an object containing the decoded key/value
+ * pairs, while removing the signed key from obj.
+ *
+ * @param {Object} obj
+ * @param {string|array} secret
+ * @return {Object}
+ * @public
+ */
+
+function signedCookies(obj, secret) {
+  var cookies = Object.keys(obj);
+  var dec;
+  var key;
+  var ret = Object.create(null);
+  var val;
+
+  for (var i = 0; i < cookies.length; i++) {
+    key = cookies[i];
+    val = obj[key];
+    dec = signedCookie(val, secret);
+
+    if (val !== dec) {
+      ret[key] = dec;
+      delete obj[key];
+    }
+  }
+
+  return ret;
+}
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * cookie
+ * Copyright(c) 2012-2014 Roman Shtylman
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+
+
+/**
+ * Module exports.
+ * @public
+ */
+
+exports.parse = parse;
+exports.serialize = serialize;
+
+/**
+ * Module variables.
+ * @private
+ */
+
+var decode = decodeURIComponent;
+var encode = encodeURIComponent;
+var pairSplitRegExp = /; */;
+
+/**
+ * RegExp to match field-content in RFC 7230 sec 3.2
+ *
+ * field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
+ * field-vchar   = VCHAR / obs-text
+ * obs-text      = %x80-FF
+ */
+
+var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+
+/**
+ * Parse a cookie header.
+ *
+ * Parse the given cookie header string into an object
+ * The object has the various cookies as keys(names) => values
+ *
+ * @param {string} str
+ * @param {object} [options]
+ * @return {object}
+ * @public
+ */
+
+function parse(str, options) {
+  if (typeof str !== 'string') {
+    throw new TypeError('argument str must be a string');
+  }
+
+  var obj = {}
+  var opt = options || {};
+  var pairs = str.split(pairSplitRegExp);
+  var dec = opt.decode || decode;
+
+  for (var i = 0; i < pairs.length; i++) {
+    var pair = pairs[i];
+    var eq_idx = pair.indexOf('=');
+
+    // skip things that don't look like key=value
+    if (eq_idx < 0) {
+      continue;
+    }
+
+    var key = pair.substr(0, eq_idx).trim()
+    var val = pair.substr(++eq_idx, pair.length).trim();
+
+    // quoted values
+    if ('"' == val[0]) {
+      val = val.slice(1, -1);
+    }
+
+    // only assign once
+    if (undefined == obj[key]) {
+      obj[key] = tryDecode(val, dec);
+    }
+  }
+
+  return obj;
+}
+
+/**
+ * Serialize data into a cookie header.
+ *
+ * Serialize the a name value pair into a cookie string suitable for
+ * http headers. An optional options object specified cookie parameters.
+ *
+ * serialize('foo', 'bar', { httpOnly: true })
+ *   => "foo=bar; httpOnly"
+ *
+ * @param {string} name
+ * @param {string} val
+ * @param {object} [options]
+ * @return {string}
+ * @public
+ */
+
+function serialize(name, val, options) {
+  var opt = options || {};
+  var enc = opt.encode || encode;
+
+  if (typeof enc !== 'function') {
+    throw new TypeError('option encode is invalid');
+  }
+
+  if (!fieldContentRegExp.test(name)) {
+    throw new TypeError('argument name is invalid');
+  }
+
+  var value = enc(val);
+
+  if (value && !fieldContentRegExp.test(value)) {
+    throw new TypeError('argument val is invalid');
+  }
+
+  var str = name + '=' + value;
+
+  if (null != opt.maxAge) {
+    var maxAge = opt.maxAge - 0;
+    if (isNaN(maxAge)) throw new Error('maxAge should be a Number');
+    str += '; Max-Age=' + Math.floor(maxAge);
+  }
+
+  if (opt.domain) {
+    if (!fieldContentRegExp.test(opt.domain)) {
+      throw new TypeError('option domain is invalid');
+    }
+
+    str += '; Domain=' + opt.domain;
+  }
+
+  if (opt.path) {
+    if (!fieldContentRegExp.test(opt.path)) {
+      throw new TypeError('option path is invalid');
+    }
+
+    str += '; Path=' + opt.path;
+  }
+
+  if (opt.expires) {
+    if (typeof opt.expires.toUTCString !== 'function') {
+      throw new TypeError('option expires is invalid');
+    }
+
+    str += '; Expires=' + opt.expires.toUTCString();
+  }
+
+  if (opt.httpOnly) {
+    str += '; HttpOnly';
+  }
+
+  if (opt.secure) {
+    str += '; Secure';
+  }
+
+  if (opt.sameSite) {
+    var sameSite = typeof opt.sameSite === 'string'
+      ? opt.sameSite.toLowerCase() : opt.sameSite;
+
+    switch (sameSite) {
+      case true:
+        str += '; SameSite=Strict';
+        break;
+      case 'lax':
+        str += '; SameSite=Lax';
+        break;
+      case 'strict':
+        str += '; SameSite=Strict';
+        break;
+      default:
+        throw new TypeError('option sameSite is invalid');
+    }
+  }
+
+  return str;
+}
+
+/**
+ * Try decoding a string using a decoding function.
+ *
+ * @param {string} str
+ * @param {function} decode
+ * @private
+ */
+
+function tryDecode(str, decode) {
+  try {
+    return decode(str);
+  } catch (e) {
+    return str;
+  }
+}
+
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+var crypto = __webpack_require__(37);
+
+/**
+ * Sign the given `val` with `secret`.
+ *
+ * @param {String} val
+ * @param {String} secret
+ * @return {String}
+ * @api private
+ */
+
+exports.sign = function(val, secret){
+  if ('string' != typeof val) throw new TypeError("Cookie value must be provided as a string.");
+  if ('string' != typeof secret) throw new TypeError("Secret string must be provided.");
+  return val + '.' + crypto
+    .createHmac('sha256', secret)
+    .update(val)
+    .digest('base64')
+    .replace(/\=+$/, '');
+};
+
+/**
+ * Unsign and decode the given `val` with `secret`,
+ * returning `false` if the signature is invalid.
+ *
+ * @param {String} val
+ * @param {String} secret
+ * @return {String|Boolean}
+ * @api private
+ */
+
+exports.unsign = function(val, secret){
+  if ('string' != typeof val) throw new TypeError("Signed cookie string must be provided.");
+  if ('string' != typeof secret) throw new TypeError("Secret string must be provided.");
+  var str = val.slice(0, val.lastIndexOf('.'))
+    , mac = exports.sign(str, secret);
+  
+  return sha1(mac) == sha1(val) ? str : false;
+};
+
+/**
+ * Private
+ */
+
+function sha1(str){
+  return crypto.createHash('sha1').update(str).digest('hex');
+}
+
 
 /***/ })
 /******/ ]);

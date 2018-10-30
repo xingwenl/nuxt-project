@@ -20,7 +20,7 @@ var pkg = require('../package');
 var fs = require('fs');
 // import axios from 'axios';
 import bodyParser from 'body-parser'
-// import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser'
 
 
 const app = express();
@@ -29,7 +29,7 @@ router.get('/api', function (req, res) {
     res.json("che你哥哥")
 })
 app.use(bodyParser.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // process.env.DEBUG = 'nuxt:*'
 

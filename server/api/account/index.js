@@ -20,16 +20,15 @@ router.get('/all_user', async (req, res) => {
     }
 })
 // 查询个人信息
-router.post('/userinfo', async (req, res) => {
+router.get('/userinfo', async (req, res) => {
     try{
-        const token = req.body.token;
-        
+        const token = req.cookies.token;
         if (utils.isEmpty(token)) {
             return res.json(base.returnJson(10001,'token不存在',"未登录"));
         }
 
-        const results = await sql.search('username,real_name,email,sex', {
-            token:token
+        const results = await sql.search('account,name,email,sex', {
+            token
         });
 
         if (utils.isEmptyObject(results)) {
@@ -94,11 +93,13 @@ router.post('/login', async (req, res) => {
             return res.json(base.returnJson(200, update, "更新失败"));
         }
 
-        const results = await sql.search('account,token', {
-            account
-        });
-
-        return res.json(base.returnJson(200, results[0], "登录成功"));
+        // const results = await sql.search('account,token', {
+        //     account
+        // });
+        res.cookie('token', token, {
+            maxAge: 1000 * 60 * 60 * 24
+        })
+        return res.json(base.returnJson(200, null, "登录成功"));
     }catch(e){
         console.log(e)
         return res.json(base.returnJson(10004, e, "服务器错误"));

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/10.11.0/bin/node /usr/local/bin/yarn install
+  /usr/local/Cellar/node/10.11.0/bin/node /usr/local/bin/yarn add cookie-parser
 
 PATH: 
   /Users/lixingwen/.rvm/gems/ruby-2.4.1/bin:/Users/lixingwen/.rvm/gems/ruby-2.4.1@global/bin:/Users/lixingwen/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lixingwen/.rvm/gems/ruby-2.4.1/bin:/Users/lixingwen/.rvm/gems/ruby-2.4.1@global/bin:/Users/lixingwen/.rvm/rubies/ruby-2.4.1/bin:/Users/lixingwen/.rvm/bin:/Users/lixingwen/.rvm/bin
@@ -24,7 +24,8 @@ npm manifest:
       "dev": "cross-env NODE_ENV=development backpack dev",
       "dev_old": "nuxt",
       "build": "nuxt build",
-      "start": "nuxt start",
+      "start": "cross-env NODE_ENV=production pm2 start build/main.js",
+      "start_old": "nuxt start",
       "generate": "nuxt generate",
       "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
       "precommit": "npm run lint"
@@ -6971,7 +6972,7 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/one-time/-/one-time-0.0.4.tgz: ETIMEDOUT
+  Error: https://registry.yarnpkg.com/mysql/-/mysql-2.16.0.tgz: ETIMEDOUT
       at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:118034:19)
       at ontimeout (timers.js:498:11)
       at tryOnTimeout (timers.js:323:5)
