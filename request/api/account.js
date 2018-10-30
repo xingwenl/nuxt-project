@@ -8,9 +8,14 @@ export default  {
         return http({
             url: '/account/register',
             method: 'POST',
-            data: {
-                ...data
-            }
+            data
         })
     },
+    login (data) {
+        return http({
+            url: '/account/login',
+            method: 'POST',
+            data
+        })
+    }
 }

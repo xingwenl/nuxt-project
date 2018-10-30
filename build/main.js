@@ -2997,18 +2997,16 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const username = req.body.username,
-              real_password = req.body.password;
-
-        if (__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmpty(username) || __WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmpty(real_password)) {
+        const { account, password } = req.body;
+        if (__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmpty(account) || __WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmpty(password)) {
             return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(10001, 'error', "请填写完整信息"));
         }
 
         // 获取加密密码
-        const password = __WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].sha1(req.body.password);
+        const password_sha1 = __WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].sha1(password);
         const isExist = await sql.search('*', {
-            username: username,
-            password: password
+            account,
+            password: password_sha1
         });
         if (__WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].isEmptyObject(isExist)) {
             return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(10003, 'error', "账号或密码错误"));
@@ -3016,17 +3014,18 @@ router.post('/login', async (req, res) => {
 
         // 获取token
         const token = __WEBPACK_IMPORTED_MODULE_1__utils_index__["a" /* default */].hmac(password);
-        const update = await sql.query(`update user_info set token="${token}" where username="${username}"`);
+        const update = await sql.query(`update account set token="${token}" where account="${account}"`);
         if (update.changedRows == 0) {
             return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(200, update, "更新失败"));
         }
 
-        const results = await sql.search('username,token', {
-            username: username
+        const results = await sql.search('account,token', {
+            account
         });
 
         return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(200, results[0], "登录成功"));
     } catch (e) {
+        console.log(e);
         return res.json(__WEBPACK_IMPORTED_MODULE_0__base_index__["a" /* default */].returnJson(10004, e, "服务器错误"));
     }
 });

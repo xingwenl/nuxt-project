@@ -72,18 +72,16 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-        const username = req.body.username,
-              real_password = req.body.password;
-
-        if (utils.isEmpty(username) || utils.isEmpty(real_password)) {
+        const { account, password } = req.body
+        if (utils.isEmpty(account) || utils.isEmpty(password)) {
             return res.json(base.returnJson(10001, 'error', "请填写完整信息"));
         }
 
         // 获取加密密码
-        const password = utils.sha1(req.body.password)
+        const password_sha1 = utils.sha1(password)
         const isExist = await sql.search('*', {
-            username: username,
-            password: password
+            account,
+            password: password_sha1
         })
         if (utils.isEmptyObject(isExist)) {
             return res.json(base.returnJson(10003, 'error', "账号或密码错误"));
@@ -91,17 +89,18 @@ router.post('/login', async (req, res) => {
 
         // 获取token
         const token = utils.hmac(password);
-        const update = await sql.query(`update user_info set token="${token}" where username="${username}"`)
+        const update = await sql.query(`update account set token="${token}" where account="${account}"`)
         if (update.changedRows == 0) {
             return res.json(base.returnJson(200, update, "更新失败"));
         }
 
-        const results = await sql.search('username,token', {
-            username:username
+        const results = await sql.search('account,token', {
+            account
         });
 
         return res.json(base.returnJson(200, results[0], "登录成功"));
     }catch(e){
+        console.log(e)
         return res.json(base.returnJson(10004, e, "服务器错误"));
     }
 })

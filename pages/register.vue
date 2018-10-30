@@ -7,7 +7,7 @@
             ref="ruleForm2" 
             label-width="80px" 
             label-position="left"
-            class="demo-ruleForm">
+            class="xw-form">
             <div class="title-container">
                 <h3 class="title">Register Form</h3> 
             </div>
@@ -55,7 +55,12 @@
                     autocomplete="off">
                 </el-input>
             </el-form-item>
-            
+            <div class="tips">
+                <nuxt-link 
+                    to="/login">
+                    已有账号？
+                </nuxt-link>
+            </div>
             <el-button 
                 type="primary" 
                 class="w-100"
@@ -128,12 +133,21 @@ export default {
     },      
     methods: {
         submitForm(formName) {
-            this.$refs[formName].validate((valid) => {
+            this.$refs[formName].validate(async (valid) => {
                 if (valid) {
-                    api.register(this.ruleForm2)
-                    alert('submit!');
+                    let res = api.register(this.ruleForm2)
+                    if (res.code === 200) {
+                        this.$message({
+                            message: '恭喜， 注册成功',
+                            type: 'success'
+                        })
+                        setTimeout(() => {
+                            this.$router.push('/login')
+                        }, 300)
+                        return;
+                    }
+                    this.$message.error(res.msg)
                 } else {
-                    console.log('error submit!!');
                     return false;
                 }
             });
@@ -158,52 +172,6 @@ export default {
             position: absolute;
             right: 0;
             width: 520px;
-        }
-        .title-container {
-            position: relative;
-        }
-        .title {
-            color: #eee;
-            font-size: 26px;
-            font-weight: 700;
-            margin: 0 auto 40px;
-            text-align: center;
-        }
-        .el-form-item {
-            background: rgba(0,0,0,.1);
-            border: 1px solid hsla(0,0%,100%,.1);
-            border-radius: 5px;
-            color: #454545;
-        }
-        .el-form-item__label {
-            color: #889aa4;
-            border-right: 1px solid hsla(0, 0%, 100%, .1);
-            text-align: center;
-        }
-        .el-input {
-            display: inline-block;
-            width: 85%;
-            input {
-                -webkit-appearance: none;
-                background: transparent;
-                border: 0;
-                border-radius: 0;
-                caret-color: #fff;
-                color: #eee;
-            }
-        }
-        .el-radio-group {
-            padding-left: 15px;
-        }
-        .el-radio {
-            color: #eee;
-        }
-        .el-radio__input.is-checked .el-radio__inner {
-            border-color: #67C23A;
-            background: #67C23A;
-        }
-        .el-radio__input.is-checked+.el-radio__label {
-            color: #67C23A;
         }
     }
 </style>
