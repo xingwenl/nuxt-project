@@ -1,5 +1,5 @@
 <template>
-    <div class="register-page">
+    <div class="account-page register-page">
         <el-form 
             :model="ruleForm2" 
             status-icon 
@@ -160,17 +160,7 @@ export default {
 </script>
 <style lang="less">
     .register-page {
-        background-color: #2d3a4b;
-        height: 100%;
-        position: fixed;
-        width: 100%;
         .el-form {
-            left: 0;
-            margin: 70px auto;
-            max-width: 100%;
-            padding: 35px 35px 15px;
-            position: absolute;
-            right: 0;
             width: 520px;
         }
     }

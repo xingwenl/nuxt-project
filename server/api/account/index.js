@@ -68,7 +68,18 @@ router.post('/register', async (req, res) => {
         return res.json(base.returnJson(10004, e, "服务器错误"));
     }
 })
-
+router.get('/logout', async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        if (token) {
+            res.clearCookie('token')
+            await sql.query(`update account set token="" where token="${token}"`)
+        }
+        return res.json(base.returnJson(200, null, '退出成功'))
+    } catch (error) {
+        return res.json(base.returnJson(10006, error, "服务器错误"));
+    }
+})
 router.post('/login', async (req, res) => {
     try{
         const { account, password } = req.body
@@ -101,7 +112,6 @@ router.post('/login', async (req, res) => {
         })
         return res.json(base.returnJson(200, null, "登录成功"));
     }catch(e){
-        console.log(e)
         return res.json(base.returnJson(10004, e, "服务器错误"));
     }
 })

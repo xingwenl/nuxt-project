@@ -62,5 +62,8 @@ module.exports = {
     {
       src: '~/plugins/http.js'
     }
-  ]
+  ],
+  router: {
+      middleware: 'auth'
+  }
 }

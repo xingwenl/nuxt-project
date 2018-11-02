@@ -4,6 +4,12 @@ import http from '../http'
 //     return http('/topics')
 // }
 export default  {
+    userinfo (cookies = {}) {
+        return http({
+            url: '/account/userinfo',
+            cookies: cookies
+        })
+    },
     register (data) {
         return http({
             url: '/account/register',

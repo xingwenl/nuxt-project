@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import http from "../request/http";
+import api from "../request/api";
 
 const plugin = {
     install (vm) {
         vm.mixin({
             created () {
-                this.$http = http
+                this.$api = api
             }
         })
-        vm.prototype.$http = http
+        vm.prototype.$api = api
     }
 }
 Vue.use(plugin)
