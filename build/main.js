@@ -3092,11 +3092,16 @@ module.exports = {
     //   }
     // ]
   ],
-  css: [{ src: './assets/css/index.less', lang: 'less' }],
+  css: [{ src: './assets/css/index.less', lang: 'less' }, {
+    src: "mavon-editor/dist/css/index.css"
+  }],
   plugins: [{
     src: '~/plugins/element-ui.js'
   }, {
     src: '~/plugins/http.js'
+  }, {
+    src: '~/plugins/vue-markdown.js',
+    ssr: false
   }],
   router: {
     middleware: 'auth'
@@ -3107,7 +3112,7 @@ module.exports = {
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"nuxt-test","version":"1.0.0","description":"Nuxt.js project","author":"xingwen","private":true,"scripts":{"dev":"cross-env NODE_ENV=development backpack dev","dev_old":"nuxt","build":"nuxt build","start":"cross-env NODE_ENV=production pm2 start build/main.js","start_old":"nuxt start","generate":"nuxt generate","lint":"eslint --ext .js,.vue --ignore-path .gitignore .","precommit":"npm run lint"},"dependencies":{"@types/vue":"^2.0.0","axios":"^0.18.0","cookie-parser":"^1.4.3","crypto":"^1.0.1","element-ui":"^2.4.8","express":"^4.16.4","express-winston":"^3.0.1","mockjs":"^1.0.1-beta3","mysql":"^2.16.0","nuxt":"^1.0.0","vue-meta":"^1.5.5","winston":"^3.1.0"},"devDependencies":{"@nuxtjs/axios":"^5.3.1","@nuxtjs/proxy":"^1.2.4","babel-eslint":"^8.2.1","backpack-core":"^0.7.0","cross-env":"^5.2.0","eslint":"^4.15.0","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-vue":"^4.0.0","less":"^3.7.1","less-loader":"^4.1.0"}}
+module.exports = {"name":"nuxt-test","version":"1.0.0","description":"Nuxt.js project","author":"xingwen","private":true,"scripts":{"dev":"cross-env NODE_ENV=development backpack dev","dev_old":"nuxt","build":"nuxt build","start":"cross-env NODE_ENV=production pm2 start build/main.js","start_old":"nuxt start","generate":"nuxt generate","lint":"eslint --ext .js,.vue --ignore-path .gitignore .","precommit":"npm run lint"},"dependencies":{"@types/vue":"^2.0.0","axios":"^0.18.0","cookie-parser":"^1.4.3","crypto":"^1.0.1","element-ui":"^2.4.8","express":"^4.16.4","express-winston":"^3.0.1","mavon-editor":"^2.6.17","mockjs":"^1.0.1-beta3","mysql":"^2.16.0","nuxt":"^1.0.0","vue-markdown":"^2.2.4","vue-meditor":"^0.9.2","vue-meta":"^1.5.5","winston":"^3.1.0"},"devDependencies":{"@nuxtjs/axios":"^5.3.1","@nuxtjs/proxy":"^1.2.4","babel-eslint":"^8.2.1","backpack-core":"^0.7.0","cross-env":"^5.2.0","eslint":"^4.15.0","eslint-friendly-formatter":"^3.0.0","eslint-loader":"^1.7.1","eslint-plugin-vue":"^4.0.0","less":"^3.7.1","less-loader":"^4.1.0"}}
 
 /***/ }),
 /* 41 */

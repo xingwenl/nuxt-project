@@ -23,21 +23,21 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 
 ### 添加插件
 
-``` bash
-# 根目录创建plugins 
-# 创建插件js ：element-ui.js
+``` js
+// 根目录创建plugins 
+// 创建插件js ：element-ui.js
 import Vue from 'vue';
 import 'element-ui/lib/theme-chalk/index.css';
 import { Loading } from "element-ui";
 Vue.use(Loading)
-# nuxt.config.js 
-#...
+// nuxt.config.js 
+//...
 plugins: [
     {
       src: '~/plugins/element-ui.js'
     },
 ]
-#...
+//...
 ```
 ### 解决跨域
 

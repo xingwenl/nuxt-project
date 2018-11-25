@@ -53,7 +53,10 @@ module.exports = {
       // ]
   ],
   css: [
-    {src: './assets/css/index.less', lang: 'less'}
+    {src: './assets/css/index.less', lang: 'less'},
+    {
+      src: "mavon-editor/dist/css/index.css"
+    }
   ],
   plugins: [
     {
@@ -61,6 +64,10 @@ module.exports = {
     },
     {
       src: '~/plugins/http.js'
+    },
+    {
+      src: '~/plugins/vue-markdown.js',
+      ssr: false
     }
   ],
   router: {
