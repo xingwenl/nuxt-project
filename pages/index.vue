@@ -1,18 +1,18 @@
 <template>
   <section class="container">
-    <!-- <topic-list
+    <topic-list
       :list="topicData"
-      /> -->
-        {{userinfo}}
-        <el-button
+      />
+        <!-- {{userinfo}} -->
+        <!-- <el-button
             @click.native="logoutClick">
             推出登录
-        </el-button>
+        </el-button> -->
   </section>
 </template>
 
 <script>
-import TopicList from '../components/index/TopicList.vue'
+import TopicList from '../components/Topic/TopicList.vue'
 import api from "../request/api";
 import { mapState, mapActions } from "vuex";
 export default {

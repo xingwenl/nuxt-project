@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- <w-header></w-header> -->
+    <top-nav></top-nav>
     <nuxt/>
   </div>
 </template>
 <script>
-import WHeader from '../components/WHeader'
+import TopNav from '../components/TopNav'
 export default {
   components: {
-    WHeader
+    TopNav
   }
 }
 </script>

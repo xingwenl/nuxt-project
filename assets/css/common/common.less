@@ -1,3 +1,4 @@
+@import url(base.less);
 // * {
 //   box-sizing: border-box;
 //   // touch-action: none;
@@ -63,7 +64,8 @@ html,body{
 }
 body{
   font-size: 14px;
-  background-color: #f4f5f5;
+  background-color: @mainColor;
+  color: @normalTextColor;
 }
 button, input{
   outline: none;
@@ -94,13 +96,13 @@ button, input{
 }
 .flex-center {
 	display: flex;
-  justify-content: space-between;
-  align-items: center;
+    justify-content: space-between;
+    align-items: center;
 }
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .talc {
   text-align-last: center;
@@ -109,62 +111,13 @@ button, input{
   height:100%;
   width: 100%
 }
-.mt-15{
-	margin-top: .15rem !important;
-}
-.mt-20{
-  margin-top: 20px;
-}
-.ml-10 {
-  margin-left: .1rem !important; 
-}
-.w-100 {
-  width: 100% !important;
-}
-.pr-0 {
-  padding-right: 0 !important;
-}
-.pl-60 {
-  padding-right: .6rem !important;
-}
-.ffc {
-  color: #ff9c97;
-}
-.right-arrow:after {
-    content: " ";
-    display: inline-block;
-    height: 6px;
-    width: 6px;
-    border-width: 2px 2px 0 0;
-    border-color: #C8C8CD;
-    border-style: solid;
-    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-    position: absolute;
-    top: 50%;
-    margin-top: -4px;
-    right: 10px;
-}
+
 .nowrap {
   white-space: nowrap;
 }
 .blur {
   filter: blur(10px);
 }
-.btn-radius {
-  border-radius: 3px;
-}
-.btn-select-active {
-  &:active {
-    opacity: 0.6;
-  }
-}
-.buy {
-  color: #1ab394
-}
-.sell {
-  color: #e7527c;
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
