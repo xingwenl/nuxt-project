@@ -7,15 +7,16 @@ export default class Sql{
 		this.tableName = tableName;
 	}
 	T(tableName){
-		this.tableName = tableName;
+        this.tableName = tableName;
 		return this;
 	}
 	query (sqlStr,options){
+        console.log(sqlStr)
 		return new Promise((res,rej) => {
 			pool.query(sqlStr,(err,results) => {
 				if (err) {
 					rej(err);
-					console.log('错误');
+					console.log(err);
 				}else{
 					res(results);
 				}
@@ -32,7 +33,7 @@ export default class Sql{
 			str = 'WHERE';
 			for (var variable in object) {
 				if (object.hasOwnProperty(variable)) {
-					str += ` ${variable}="${object[variable]}" AND`
+					str += ` ${variable}=${JSON.stringify(object[variable])} AND`
 				}
 			}
 			str = str.slice(0,-4);
@@ -50,7 +51,6 @@ export default class Sql{
 				object = [object];
 			}
 			if (utils.isEmptyObject(object)) {
-				console.log('这尼玛是个空值') 
 				return object;
 			}
 			object.forEach(function(item, index){
@@ -58,8 +58,8 @@ export default class Sql{
 				for (var variable in item) {
 					if (index == 0) {
 						key.push(variable);
-					}
-					vauleTmp.push(`"${item[variable]}"`);
+                    }
+					vauleTmp.push(`${JSON.stringify(item[variable])}`);
 				}
 				vauleTmp = `(${vauleTmp.toString()})`;
 				value.push(vauleTmp);

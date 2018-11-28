@@ -1,0 +1,47 @@
+.ellipsis-2 {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+.bold {
+	font-weight: @bold;
+}
+.flex {
+    display: flex;
+}
+.flex-sb {
+    display: flex;
+    justify-content: space-between;
+}
+.flex-center {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.talc {
+  text-align-last: center;
+}
+.wh-full{
+  height:100%;
+  width: 100%
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+.blur {
+  filter: blur(10px);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

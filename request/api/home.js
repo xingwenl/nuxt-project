@@ -4,16 +4,11 @@ import http from '../http'
 //     return http('/topics')
 // }
 export default  {
-    topics (data) {
-        return http({
-            url: '/account/all_user',
-            method: 'GET',
-            data: {
-                limit: 10,
-                mdrender: true,
-                ...data
-            }
+    async topic (data) {
+        let res = await http({
+            url: '/topic'
         })
+        return res;
     },
     topicsId (data) {
         return http({

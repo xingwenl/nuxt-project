@@ -1,8 +1,7 @@
 <template>
-  <section class="container">
-    <topic-list
-      :list="topicData"
-      />
+  <section class="container flex-sb">
+        <topic :list="topicData"/>
+        <topic-article/>
         <!-- {{userinfo}} -->
         <!-- <el-button
             @click.native="logoutClick">
@@ -12,16 +11,18 @@
 </template>
 
 <script>
-import TopicList from '../components/Topic/TopicList.vue'
+import Topic from '../components/topic'
+import TopicArticle from '../components/topic-article'
 import api from "../request/api";
 import { mapState, mapActions } from "vuex";
 export default {
     components: {
-        TopicList
+        Topic,
+        TopicArticle
     },
     data () {
         return {
-        topicData: [],
+            topicData: [],
         }
     },
     computed: {
@@ -30,21 +31,28 @@ export default {
         ])
     },
     async asyncData ({req}) {
-        
+        let res = await api.topic()
+        if (res.code === 200) {
+            return {
+                topicData: res.data
+            }
+        }
     },
     async created () {
-        // console.log(this.$store.state.account)
+        console.log(this.topicData)
     },
     methods: {
         ...mapActions('account', [
             'logout'
+        ]),
+        ...mapActions('topic', [
+            'topic'
         ]),
         async logoutClick() {
             let res = await this.logout()
             if (res.code === 200) {
                 this.$router.replace('/login')
             }
-
         }
     }
 }

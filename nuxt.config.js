@@ -66,6 +66,9 @@ module.exports = {
       src: '~/plugins/http.js'
     },
     {
+        src: '~/plugins/filters.js'
+    },
+    {
       src: '~/plugins/vue-markdown.js',
       ssr: false
     }

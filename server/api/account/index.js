@@ -1,7 +1,7 @@
-import base from '../base/index'
+import base, { Sql } from '../base/index'
 import utils from '../../utils/index'
 const router = base.Router()
-const sql = base.sql.T('account')
+const sql = new Sql('account')
 
 router.get('/all_user', async (req, res) => {
     try {
@@ -13,7 +13,7 @@ router.get('/all_user', async (req, res) => {
         ))
     } catch (error) {
         return res.json(base.returnJson(
-            10005,
+            10004,
             error,
             '服务器错误'
         ))
@@ -24,7 +24,7 @@ router.get('/userinfo', async (req, res) => {
     try{
         const token = req.cookies.token;
         if (utils.isEmpty(token)) {
-            return res.json(base.returnJson(10001,'token不存在',"未登录"));
+            return res.json(base.returnJson(10003,'token不存在',"未登录"));
         }
 
         const results = await sql.search('account,name,email,sex', {
@@ -32,7 +32,7 @@ router.get('/userinfo', async (req, res) => {
         });
 
         if (utils.isEmptyObject(results)) {
-            return res.json(base.returnJson(200, 'token错误', "登录失效，请重新登录"));
+            return res.json(base.returnJson(10005, 'token错误', "登录失效，请重新登录"));
         }
 
         return res.json(base.returnJson(200, results[0], "查询成功"));
@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
 
         const isExist = await sql.search('*', {'account': account})
         if (!utils.isEmptyObject(isExist)) {
-            return res.json(base.returnJson(10002,'error',"改账号已存在，请重新输入账号"));
+            return res.json(base.returnJson(10002,'error',"该账号已存在，请重新输入账号"));
         }
         
         const password_sha1 = utils.sha1(password)
@@ -77,7 +77,7 @@ router.get('/logout', async (req, res) => {
         }
         return res.json(base.returnJson(200, null, '退出成功'))
     } catch (error) {
-        return res.json(base.returnJson(10006, error, "服务器错误"));
+        return res.json(base.returnJson(10004, error, "服务器错误"));
     }
 })
 router.post('/login', async (req, res) => {

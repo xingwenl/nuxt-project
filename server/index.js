@@ -20,6 +20,7 @@ var pkg = require('../package');
 var fs = require('fs');
 // import axios from 'axios';
 import bodyParser from 'body-parser'
+// 设置cookie
 import cookieParser from 'cookie-parser'
 
 
@@ -72,10 +73,10 @@ app.locals.blog = {
 
 app.use(expressWinston.logger({
     transports: [
-        // new(winston.transports.Console)({
-        //   json: true,
-        //   colorize: true
-        // }),
+        new winston.transports.Console({
+            json: true,
+            colorize: true
+        }),
         new winston.transports.File({
             filename: 'server/logs/success.log'
         })

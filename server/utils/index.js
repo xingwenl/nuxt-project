@@ -51,6 +51,23 @@ class Utils{
 			}
 		}
 		return true;
+    }
+    
+    /**
+	 * @description 检查是否为NULL
+	 * @param [Object] 检查对象
+	 * @param [String] 过滤字段
+	 * @returns [Boolean] 有空值则返回true
+	 */
+	hasNullParams (data, filter = []) {
+		for (let key in data) {
+			if (filter.indexOf(data) === -1) {
+				if (this.isEmpty(data[key])) {
+					return true
+				}
+			}
+		}
+		return false;
 	}
 }
 

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["/*"]
+      },
+      "target": "ES6",
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true
+    },
+    "include": [
+      "/**/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }

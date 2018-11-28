@@ -22,6 +22,7 @@
     "element-ui": "^2.4.8",
     "express": "^4.16.4",
     "express-winston": "^3.0.1",
+    "github-markdown-css": "^2.10.0",
     "mavon-editor": "^2.6.17",
     "mockjs": "^1.0.1-beta3",
     "mysql": "^2.16.0",
