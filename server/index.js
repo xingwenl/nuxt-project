@@ -26,9 +26,6 @@ import cookieParser from 'cookie-parser'
 
 const app = express();
 const router = express.Router()
-router.get('/api', function (req, res) {
-    res.json("che你哥哥")
-})
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -73,10 +70,10 @@ app.locals.blog = {
 
 app.use(expressWinston.logger({
     transports: [
-        new winston.transports.Console({
-            json: true,
-            colorize: true
-        }),
+        // new winston.transports.Console({
+        //     json: true,
+        //     colorize: true
+        // }),
         new winston.transports.File({
             filename: 'server/logs/success.log'
         })
@@ -85,13 +82,15 @@ app.use(expressWinston.logger({
 
 // startRouter(app);
 app.use('/api', api);
+// 静态文件
+app.use('/uploads', express.static('uploads'))
 
 app.use(expressWinston.errorLogger({
     transports: [
-        new winston.transports.Console({
-            json: true,
-            colorize: true
-        }),
+        // new winston.transports.Console({
+        //     json: true,
+        //     colorize: true
+        // }),
         new winston.transports.File({
             filename: 'server/logs/error.log'
         })

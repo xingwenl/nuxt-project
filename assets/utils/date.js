@@ -79,9 +79,13 @@ export default new FormatDate()
  */
 export function formatDate(time, fmt){
     var now = new Date();
-    var date = new Date(time);
-    if(date == "Invalid Date"){
-        date = now;
+    if (!time) {
+        date = now
+    }else {
+        var date = new Date(time);
+        if(date == "Invalid Date"){
+            date = now;
+        }
     }
     var o = {
         "M+": date.getMonth() + 1, //月份
@@ -117,3 +121,5 @@ export const DATE_MM = "yyyy-MM-dd hh:mm"
  *  @type {string}
  */
 export const DATE_DD = "yyyy-MM-dd"
+
+export const DATE_STR = "yyyyMMddhhmmss"

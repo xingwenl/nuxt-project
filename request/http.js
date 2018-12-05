@@ -28,9 +28,11 @@ export default async function http (params) {
     const get = method.toUpperCase() === 'GET' && ctx.data
     const url = ctx.url
     const cookie = parseCookie(params.cookies)
-    let headers = cookie ? {
-        cookie
-    } : {}
+    let headers = params.headers || {}
+    headers = cookie ? {
+        cookie,
+        ...headers
+    } : headers
     const res = await axiosInstance({
         url: url,
         method: method,

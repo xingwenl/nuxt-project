@@ -1,6 +1,5 @@
 import crypto from 'crypto'
 export default class Crypto {
-
 	sha1 (str) {
 		const sha1 = crypto.createHash('sha1');
 		sha1.update(str);

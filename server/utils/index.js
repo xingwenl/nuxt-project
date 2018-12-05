@@ -1,5 +1,6 @@
 'use strict';
 import Crypto from './crypto'
+import multer from './multer'
 class Utils{
 
 	constructor() {
@@ -70,5 +71,7 @@ class Utils{
 		return false;
 	}
 }
-
+export {
+	multer
+}
 export default new Utils()

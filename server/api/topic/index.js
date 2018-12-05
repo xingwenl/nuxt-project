@@ -1,7 +1,31 @@
-import base, { Sql } from '../base/index'
-import utils from '../../utils/index'
+import base, { Sql, utils } from '../base/index'
+import multer from 'multer'
 const router = base.Router()
 const sql = new Sql('topic')
+const topic_img = base.upload().single('topic_img') // 名称一定要已有
+
+router.post('/upload_images', (req, res) => {
+    try {
+        topic_img(req, res, (err) => {
+            if (err instanceof multer.MulterError) {
+                return res.json(base.returnJson(10006, '图片未找到', '上传失败'))
+                // A Multer error occurred when uploading.
+            } else if (err) {
+                // An unknown error occurred when uploading.
+                return res.json(base.returnJson(10006, err, '上传失败'))
+            }
+            if (req.file) {
+                return res.json(base.returnJson(200, {
+                    path: req.file.path
+                }, '上传成功'))
+            }
+            return res.json(base.returnJson(10006, '图片未找到', '上传失败'))
+        })
+        
+    } catch (err) {
+        return res.json(base.returnJson(10004, err, '服务器错误'))
+    }
+})
 
 router.get('/', async (req, res) => {
     try {

@@ -1,6 +1,6 @@
 import express from 'express'
 import Sql from '../../utils/sql'
-import utils from '../../utils'
+import utils,{ multer } from '../../utils'
 class Base {
     constructor () {
         this.sql = new Sql()
@@ -40,8 +40,19 @@ class Base {
             return _this.returnJson(10004, e, "服务器错误");
         }
     }
+
+    // 上传图片的
+	multer (desc) {
+		return multer.instance(desc);
+	}
+
+	upload (desc) {
+		return this.multer(desc||'./uploads');
+	}
 }
 export {
-    Sql
+    Sql,
+    utils,
+    multer
 }
 export default new Base()
