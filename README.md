@@ -58,7 +58,8 @@ proxy: [
 ### nuxt api
 
 ``` bash 
-# asyncData
+# asyncData 
+# $axios
 # 界面初始化时 服务端渲染 只在/pages界面组件里执行 
 # 界面之间跳转是 客户端执行
 #...

@@ -3,12 +3,12 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _704c34bf = () => import('../pages/login.vue' /* webpackChunkName: "pages/login" */).then(m => m.default || m)
-const _2bf2d0f9 = () => import('../pages/home.vue' /* webpackChunkName: "pages/home" */).then(m => m.default || m)
-const _af2a86b8 = () => import('../pages/edit.vue' /* webpackChunkName: "pages/edit" */).then(m => m.default || m)
-const _1b019086 = () => import('../pages/register.vue' /* webpackChunkName: "pages/register" */).then(m => m.default || m)
-const _3587c2b0 = () => import('../pages/topic/_id.vue' /* webpackChunkName: "pages/topic/_id" */).then(m => m.default || m)
-const _b2b6dcb0 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
+const _07faebec = () => import('../pages/login.vue' /* webpackChunkName: "pages/login" */).then(m => m.default || m)
+const _7ea18a6e = () => import('../pages/Home.vue' /* webpackChunkName: "pages/Home" */).then(m => m.default || m)
+const _1181dc0e = () => import('../pages/edit.vue' /* webpackChunkName: "pages/edit" */).then(m => m.default || m)
+const _69ceda92 = () => import('../pages/register.vue' /* webpackChunkName: "pages/register" */).then(m => m.default || m)
+const _afa70b0a = () => import('../pages/topic/_id.vue' /* webpackChunkName: "pages/topic/_id" */).then(m => m.default || m)
+const _325ae6f3 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 
 
 
@@ -70,32 +70,32 @@ export function createRouter () {
     routes: [
 		{
 			path: "/login",
-			component: _704c34bf,
+			component: _07faebec,
 			name: "login"
 		},
 		{
-			path: "/home",
-			component: _2bf2d0f9,
-			name: "home"
+			path: "/Home",
+			component: _7ea18a6e,
+			name: "Home"
 		},
 		{
 			path: "/edit",
-			component: _af2a86b8,
+			component: _1181dc0e,
 			name: "edit"
 		},
 		{
 			path: "/register",
-			component: _1b019086,
+			component: _69ceda92,
 			name: "register"
 		},
 		{
 			path: "/topic/:id?",
-			component: _3587c2b0,
+			component: _afa70b0a,
 			name: "topic-id"
 		},
 		{
 			path: "/",
-			component: _b2b6dcb0,
+			component: _325ae6f3,
 			name: "index"
 		}
     ],

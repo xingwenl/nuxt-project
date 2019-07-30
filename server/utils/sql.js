@@ -66,7 +66,7 @@ export default class Sql{
 			})
 			key = key.toString();
 			value = value.toString();
-			var str = `INSERT INTO ${this.tableName}(${key}) VALUES${value}`;
+			var str = `INSERT INTO ${this.tableName}(${key}) VALUES${value};`;
 			return this.query(str);
 		}
 		console.log('这尼玛是个空值')

@@ -12,7 +12,7 @@ import { setContext, getLocation, getRouteData } from './utils'
 import { createStore } from './store.js'
 
 /* Plugins */
-import nuxt_plugin_axios_792d9cf6 from 'nuxt_plugin_axios_792d9cf6' // Source: ./axios.js
+import nuxt_plugin_axios_6ffc1b6a from 'nuxt_plugin_axios_6ffc1b6a' // Source: ./axios.js
 import nuxt_plugin_elementui_72a9ed1c from 'nuxt_plugin_elementui_72a9ed1c' // Source: ../plugins/element-ui.js
 import nuxt_plugin_http_30dfb839 from 'nuxt_plugin_http_30dfb839' // Source: ../plugins/http.js
 import nuxt_plugin_filters_2dd71012 from 'nuxt_plugin_filters_2dd71012' // Source: ../plugins/filters.js
@@ -155,7 +155,7 @@ async function createApp (ssrContext) {
 
   // Plugin execution
   
-  if (typeof nuxt_plugin_axios_792d9cf6 === 'function') await nuxt_plugin_axios_792d9cf6(app.context, inject)
+  if (typeof nuxt_plugin_axios_6ffc1b6a === 'function') await nuxt_plugin_axios_6ffc1b6a(app.context, inject)
   if (typeof nuxt_plugin_elementui_72a9ed1c === 'function') await nuxt_plugin_elementui_72a9ed1c(app.context, inject)
   if (typeof nuxt_plugin_http_30dfb839 === 'function') await nuxt_plugin_http_30dfb839(app.context, inject)
   if (typeof nuxt_plugin_filters_2dd71012 === 'function') await nuxt_plugin_filters_2dd71012(app.context, inject)

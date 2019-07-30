@@ -1,17 +1,30 @@
 Arguments: 
-  /usr/local/Cellar/node/10.11.0/bin/node /usr/local/bin/yarn add cookie-parser
+  /usr/local/bin/node /usr/local/bin/yarn
 
 PATH: 
-  /Users/lixingwen/.rvm/gems/ruby-2.4.1/bin:/Users/lixingwen/.rvm/gems/ruby-2.4.1@global/bin:/Users/lixingwen/.rvm/rubies/ruby-2.4.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lixingwen/.rvm/gems/ruby-2.4.1/bin:/Users/lixingwen/.rvm/gems/ruby-2.4.1@global/bin:/Users/lixingwen/.rvm/rubies/ruby-2.4.1/bin:/Users/lixingwen/.rvm/bin:/Users/lixingwen/.rvm/bin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
-  1.0.2
+  1.16.0
 
 Node version: 
-  8.12.0
+  10.15.3
 
 Platform: 
   darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.6.tgz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (/usr/local/lib/node_modules/yarn/lib/cli.js:696:66)
+      at new ResponseError (/usr/local/lib/node_modules/yarn/lib/cli.js:802:124)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:66161:16)
+      at Request.emit (events.js:189:13)
+      at Request.module.exports.Request.onRequestResponse (/usr/local/lib/node_modules/yarn/lib/cli.js:130467:10)
+      at ClientRequest.emit (events.js:194:15)
+      at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:556:21)
+      at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+      at TLSSocket.socketOnData (_http_client.js:442:20)
+      at TLSSocket.emit (events.js:189:13)
 
 npm manifest: 
   {
@@ -28,18 +41,25 @@ npm manifest:
       "start_old": "nuxt start",
       "generate": "nuxt generate",
       "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-      "precommit": "npm run lint"
+      "precommit": "npm run lint",
+      "dev-debug": "node --debug node_modules/.bin/nuxt"
     },
     "dependencies": {
       "@types/vue": "^2.0.0",
       "axios": "^0.18.0",
+      "cookie-parser": "^1.4.3",
       "crypto": "^1.0.1",
       "element-ui": "^2.4.8",
       "express": "^4.16.4",
       "express-winston": "^3.0.1",
+      "github-markdown-css": "^2.10.0",
+      "mavon-editor": "^2.6.17",
       "mockjs": "^1.0.1-beta3",
+      "multer": "^1.4.1",
       "mysql": "^2.16.0",
       "nuxt": "^1.0.0",
+      "vue-markdown": "^2.2.4",
+      "vue-meditor": "^0.9.2",
       "vue-meta": "^1.5.5",
       "winston": "^3.1.0"
     },
@@ -287,6 +307,10 @@ Lockfile:
     dependencies:
       micromatch "^3.1.4"
       normalize-path "^2.1.1"
+  
+  append-field@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.npmjs.org/append-field/-/append-field-1.0.0.tgz#1e3440e915f0b1203d23748e78edd7b9b5b43e56"
   
   aproba@^1.0.3, aproba@^1.1.1:
     version "1.2.0"
@@ -1274,6 +1298,13 @@ Lockfile:
     version "3.0.0"
     resolved "http://registry.npm.taobao.org/builtin-status-codes/download/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   
+  busboy@^0.2.11:
+    version "0.2.14"
+    resolved "https://registry.npmjs.org/busboy/-/busboy-0.2.14.tgz#6c2a622efcf47c57bbbe1e2a9c37ad36c7925453"
+    dependencies:
+      dicer "0.2.5"
+      readable-stream "1.1.x"
+  
   bytes@3.0.0:
     version "3.0.0"
     resolved "http://registry.npm.taobao.org/bytes/download/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -1495,7 +1526,7 @@ Lockfile:
     version "1.0.4"
     resolved "http://registry.npm.taobao.org/clone/download/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   
-  clone@^2.1.1, clone@^2.1.2:
+  clone@^2.1.0, clone@^2.1.1, clone@^2.1.2:
     version "2.1.2"
     resolved "http://registry.npm.taobao.org/clone/download/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
   
@@ -1661,7 +1692,7 @@ Lockfile:
     version "0.0.1"
     resolved "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   
-  concat-stream@^1.5.0, concat-stream@^1.6.0:
+  concat-stream@^1.5.0, concat-stream@^1.5.2, concat-stream@^1.6.0:
     version "1.6.2"
     resolved "http://registry.npm.taobao.org/concat-stream/download/concat-stream-1.6.2.tgz#904bdf194cd3122fc675c77fc4ac3d4ff0fd1a34"
     dependencies:
@@ -1732,6 +1763,13 @@ Lockfile:
     resolved "http://registry.npm.taobao.org/convert-source-map/download/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"
     dependencies:
       safe-buffer "~5.1.1"
+  
+  cookie-parser@^1.4.3:
+    version "1.4.3"
+    resolved "https://registry.npmjs.org/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
+    dependencies:
+      cookie "0.3.1"
+      cookie-signature "1.0.6"
   
   cookie-signature@1.0.6:
     version "1.0.6"
@@ -2138,6 +2176,13 @@ Lockfile:
       colorspace "1.1.x"
       enabled "1.0.x"
       kuler "1.0.x"
+  
+  dicer@0.2.5:
+    version "0.2.5"
+    resolved "https://registry.npmjs.org/dicer/-/dicer-0.2.5.tgz#5996c086bb33218c812c090bddc09cd12facb70f"
+    dependencies:
+      readable-stream "1.1.x"
+      streamsearch "0.1.2"
   
   diffie-hellman@^5.0.0:
     version "5.0.3"
@@ -2945,6 +2990,10 @@ Lockfile:
     dependencies:
       assert-plus "^1.0.0"
   
+  github-markdown-css@^2.10.0:
+    version "2.10.0"
+    resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-2.10.0.tgz#0612fed22816b33b282f37ef8def7a4ecabfe993"
+  
   glob-parent@^3.1.0:
     version "3.1.0"
     resolved "http://registry.npm.taobao.org/glob-parent/download/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -3110,6 +3159,14 @@ Lockfile:
   he@^1.1.0:
     version "1.2.0"
     resolved "http://registry.npm.taobao.org/he/download/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
+  
+  highlight.js-async-webpack@^1.0.4:
+    version "1.0.4"
+    resolved "https://registry.npmjs.org/highlight.js-async-webpack/-/highlight.js-async-webpack-1.0.4.tgz#c06b67bf99f049045d62b756e5855b0912ec616c"
+  
+  highlight.js@^9.11.0, highlight.js@^9.12.0:
+    version "9.13.1"
+    resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
   
   hmac-drbg@^1.0.0:
     version "1.0.1"
@@ -3690,6 +3747,12 @@ Lockfile:
       json-schema "0.2.3"
       verror "1.10.0"
   
+  katex@^0.6.0:
+    version "0.6.0"
+    resolved "http://registry.npmjs.org/katex/-/katex-0.6.0.tgz#12418e09121c05c92041b6b3b9fb6bab213cb6f3"
+    dependencies:
+      match-at "^0.1.0"
+  
   kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
     version "3.2.2"
     resolved "http://registry.npm.taobao.org/kind-of/download/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -3774,6 +3837,12 @@ Lockfile:
     dependencies:
       prelude-ls "~1.1.2"
       type-check "~0.3.2"
+  
+  linkify-it@~1.2.2:
+    version "1.2.4"
+    resolved "https://registry.npmjs.org/linkify-it/-/linkify-it-1.2.4.tgz#0773526c317c8fd13bd534ee1d180ff88abf881a"
+    dependencies:
+      uc.micro "^1.0.1"
   
   load-json-file@^2.0.0:
     version "2.0.0"
@@ -3935,9 +4004,83 @@ Lockfile:
     dependencies:
       object-visit "^1.0.0"
   
+  markdown-it-abbr@^1.0.3:
+    version "1.0.4"
+    resolved "https://registry.npmjs.org/markdown-it-abbr/-/markdown-it-abbr-1.0.4.tgz#d66b5364521cbb3dd8aa59dadfba2fb6865c8fd8"
+  
+  markdown-it-deflist@^2.0.1:
+    version "2.0.3"
+    resolved "https://registry.npmjs.org/markdown-it-deflist/-/markdown-it-deflist-2.0.3.tgz#5727db04184d3cb2bc6ee4a9641e3a1091d5fd6f"
+  
+  markdown-it-emoji@^1.1.1:
+    version "1.4.0"
+    resolved "https://registry.npmjs.org/markdown-it-emoji/-/markdown-it-emoji-1.4.0.tgz#9bee0e9a990a963ba96df6980c4fddb05dfb4dcc"
+  
+  markdown-it-footnote@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.npmjs.org/markdown-it-footnote/-/markdown-it-footnote-2.0.0.tgz#14e9c4f68ff12cf354fa365ae378276e8104ca94"
+  
+  markdown-it-ins@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.npmjs.org/markdown-it-ins/-/markdown-it-ins-2.0.0.tgz#a5aa6a30f1e2f71e9497567cfdff40f1fde67483"
+  
+  markdown-it-katex@^2.0.3:
+    version "2.0.3"
+    resolved "https://registry.npmjs.org/markdown-it-katex/-/markdown-it-katex-2.0.3.tgz#d7b86a1aea0b9d6496fab4e7919a18fdef589c39"
+    dependencies:
+      katex "^0.6.0"
+  
+  markdown-it-mark@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.npmjs.org/markdown-it-mark/-/markdown-it-mark-2.0.0.tgz#46a1aa947105aed8188978e0a016179e404f42c7"
+  
+  markdown-it-sub@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.npmjs.org/markdown-it-sub/-/markdown-it-sub-1.0.0.tgz#375fd6026eae7ddcb012497f6411195ea1e3afe8"
+  
+  markdown-it-sup@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.npmjs.org/markdown-it-sup/-/markdown-it-sup-1.0.0.tgz#cb9c9ff91a5255ac08f3fd3d63286e15df0a1fc3"
+  
+  markdown-it-task-lists@^2.0.1:
+    version "2.1.1"
+    resolved "https://registry.npmjs.org/markdown-it-task-lists/-/markdown-it-task-lists-2.1.1.tgz#f68f4d2ac2bad5a2c373ba93081a1a6848417088"
+  
+  markdown-it-toc-and-anchor@^4.1.2:
+    version "4.1.2"
+    resolved "https://registry.npmjs.org/markdown-it-toc-and-anchor/-/markdown-it-toc-and-anchor-4.1.2.tgz#b271f694a70bf719e6b728056d7bd931d364214d"
+    dependencies:
+      clone "^2.1.0"
+      uslug "^1.0.4"
+  
+  markdown-it@^6.0.1:
+    version "6.1.1"
+    resolved "https://registry.npmjs.org/markdown-it/-/markdown-it-6.1.1.tgz#ced037f4473ee9f5153ac414f77dc83c91ba927c"
+    dependencies:
+      argparse "^1.0.7"
+      entities "~1.1.1"
+      linkify-it "~1.2.2"
+      mdurl "~1.0.1"
+      uc.micro "^1.0.1"
+  
+  marked@^0.4.0:
+    version "0.4.0"
+    resolved "https://registry.npmjs.org/marked/-/marked-0.4.0.tgz#9ad2c2a7a1791f10a852e0112f77b571dce10c66"
+  
+  match-at@^0.1.0:
+    version "0.1.1"
+    resolved "https://registry.npmjs.org/match-at/-/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
+  
   math-expression-evaluator@^1.2.14:
     version "1.2.17"
     resolved "http://registry.npm.taobao.org/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
+  
+  mavon-editor@^2.6.17:
+    version "2.6.17"
+    resolved "https://registry.npmjs.org/mavon-editor/-/mavon-editor-2.6.17.tgz#86fb4f5a88553c16d0d9f173ed69ebcfa0f1ae7e"
+    dependencies:
+      highlight.js "^9.11.0"
+      highlight.js-async-webpack "^1.0.4"
   
   md5.js@^1.3.4:
     version "1.3.5"
@@ -3946,6 +4089,10 @@ Lockfile:
       hash-base "^3.0.0"
       inherits "^2.0.1"
       safe-buffer "^5.1.2"
+  
+  mdurl@~1.0.1:
+    version "1.0.1"
+    resolved "https://registry.npmjs.org/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   
   media-typer@0.3.0:
     version "0.3.0"
@@ -4110,6 +4257,19 @@ Lockfile:
   ms@^2.1.1:
     version "2.1.1"
     resolved "http://registry.npm.taobao.org/ms/download/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
+  
+  multer@^1.4.1:
+    version "1.4.1"
+    resolved "https://registry.npmjs.org/multer/-/multer-1.4.1.tgz#24b12a416a22fec2ade810539184bf138720159e"
+    dependencies:
+      append-field "^1.0.0"
+      busboy "^0.2.11"
+      concat-stream "^1.5.2"
+      mkdirp "^0.5.1"
+      object-assign "^4.1.1"
+      on-finished "^2.3.0"
+      type-is "^1.6.4"
+      xtend "^4.0.0"
   
   mustache@^2.3.0:
     version "2.3.2"
@@ -4444,7 +4604,7 @@ Lockfile:
     dependencies:
       isobject "^3.0.1"
   
-  on-finished@~2.3.0:
+  on-finished@^2.3.0, on-finished@~2.3.0:
     version "2.3.0"
     resolved "http://registry.npm.taobao.org/on-finished/download/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
     dependencies:
@@ -5504,6 +5664,15 @@ Lockfile:
       isarray "0.0.1"
       string_decoder "~0.10.x"
   
+  readable-stream@1.1.x:
+    version "1.1.14"
+    resolved "http://registry.npmjs.org/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+    dependencies:
+      core-util-is "~1.0.0"
+      inherits "~2.0.1"
+      isarray "0.0.1"
+      string_decoder "~0.10.x"
+  
   readdirp@^2.0.0:
     version "2.2.1"
     resolved "http://registry.npm.taobao.org/readdirp/download/readdirp-2.2.1.tgz#0e87622a3325aa33e892285caf8b4e846529a525"
@@ -6129,6 +6298,10 @@ Lockfile:
     version "1.0.0"
     resolved "http://registry.npm.taobao.org/stream-shift/download/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
   
+  streamsearch@0.1.2:
+    version "0.1.2"
+    resolved "https://registry.npmjs.org/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+  
   strict-uri-encode@^1.0.0:
     version "1.1.0"
     resolved "http://registry.npm.taobao.org/strict-uri-encode/download/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
@@ -6385,7 +6558,7 @@ Lockfile:
     dependencies:
       prelude-ls "~1.1.2"
   
-  type-is@~1.6.16:
+  type-is@^1.6.4, type-is@~1.6.16:
     version "1.6.16"
     resolved "http://registry.npm.taobao.org/type-is/download/type-is-1.6.16.tgz#f89ce341541c672b25ee7ae3c73dee3b2be50194"
     dependencies:
@@ -6395,6 +6568,10 @@ Lockfile:
   typedarray@^0.0.6:
     version "0.0.6"
     resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+  
+  uc.micro@^1.0.1:
+    version "1.0.5"
+    resolved "https://registry.npmjs.org/uc.micro/-/uc.micro-1.0.5.tgz#0c65f15f815aa08b560a61ce8b4db7ffc3f45376"
   
   uglify-es@^3.3.4:
     version "3.3.10"
@@ -6496,6 +6673,10 @@ Lockfile:
     version "0.1.2"
     resolved "http://registry.npm.taobao.org/universalify/download/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
   
+  "unorm@>= 1.0.0":
+    version "1.4.1"
+    resolved "https://registry.npmjs.org/unorm/-/unorm-1.4.1.tgz#364200d5f13646ca8bcd44490271335614792300"
+  
   unpipe@1.0.0, unpipe@~1.0.0:
     version "1.0.0"
     resolved "http://registry.npm.taobao.org/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
@@ -6572,6 +6753,12 @@ Lockfile:
   use@^3.1.0:
     version "3.1.1"
     resolved "http://registry.npm.taobao.org/use/download/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
+  
+  uslug@^1.0.4:
+    version "1.0.4"
+    resolved "https://registry.npmjs.org/uslug/-/uslug-1.0.4.tgz#b9a22f0914e0a86140633dacc302e5f4fa450677"
+    dependencies:
+      unorm ">= 1.0.0"
   
   util-deprecate@~1.0.1:
     version "1.0.2"
@@ -6667,6 +6854,32 @@ Lockfile:
       vue-style-loader "^3.0.0"
       vue-template-es2015-compiler "^1.6.0"
   
+  vue-markdown@^2.2.4:
+    version "2.2.4"
+    resolved "https://registry.npmjs.org/vue-markdown/-/vue-markdown-2.2.4.tgz#db0f774178f3bc91ee18c626d86a3a0d2de22746"
+    dependencies:
+      highlight.js "^9.12.0"
+      markdown-it "^6.0.1"
+      markdown-it-abbr "^1.0.3"
+      markdown-it-deflist "^2.0.1"
+      markdown-it-emoji "^1.1.1"
+      markdown-it-footnote "^2.0.0"
+      markdown-it-ins "^2.0.0"
+      markdown-it-katex "^2.0.3"
+      markdown-it-mark "^2.0.0"
+      markdown-it-sub "^1.0.0"
+      markdown-it-sup "^1.0.0"
+      markdown-it-task-lists "^2.0.1"
+      markdown-it-toc-and-anchor "^4.1.2"
+  
+  vue-meditor@^0.9.2:
+    version "0.9.2"
+    resolved "https://registry.npmjs.org/vue-meditor/-/vue-meditor-0.9.2.tgz#f255aaff57422a182061a81c2a0f374836485f1c"
+    dependencies:
+      highlight.js "^9.12.0"
+      marked "^0.4.0"
+      vue "^2.5.11"
+  
   vue-meta@^1.4.3, vue-meta@^1.5.5:
     version "1.5.5"
     resolved "http://registry.npm.taobao.org/vue-meta/download/vue-meta-1.5.5.tgz#e24a5fea3a0c11b67c85947f0a7ee3f3edcbc01d"
@@ -6710,7 +6923,7 @@ Lockfile:
     version "1.6.0"
     resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
   
-  vue@*, vue@^2.5.17:
+  vue@*, vue@^2.5.11, vue@^2.5.17:
     version "2.5.17"
     resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   
@@ -6970,10 +7183,3 @@ Lockfile:
       cliui "^2.1.0"
       decamelize "^1.0.0"
       window-size "0.1.0"
-
-Trace: 
-  Error: https://registry.yarnpkg.com/mysql/-/mysql-2.16.0.tgz: ETIMEDOUT
-      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:118034:19)
-      at ontimeout (timers.js:498:11)
-      at tryOnTimeout (timers.js:323:5)
-      at Timer.listOnTimeout (timers.js:290:5)
